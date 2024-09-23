@@ -1,13 +1,12 @@
-const mongoose = require('mongoose');
+// models/Query.js
+import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    strength: Object,
-    gymPlan: Object,
-    dietPlan: Object,
-});
+const querySchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+}, { timestamps: true });
 
-const User = mongoose.model('User', UserSchema);
+const Query = mongoose.model('Query', querySchema);
 
-module.exports = User;
+export default Query;

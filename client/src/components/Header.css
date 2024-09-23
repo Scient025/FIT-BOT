@@ -1,0 +1,7 @@
+/* Header.css */
+.navbar-nav {
+    display: flex; /* Ensure items are in a row */
+    list-style: none; /* Remove default bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}

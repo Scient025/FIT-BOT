@@ -20,10 +20,13 @@ const Header = () => {
                             <Link className="nav-link" to="Chatbot">Chatbot</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="#">Network</Link>
+                            <Link className="nav-link" to="#">Community</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/query">Support</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="#">Log In/Sign Up</Link>
                         </li>
                     </ul>
                 </div>

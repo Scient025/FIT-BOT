@@ -1,9 +1,113 @@
-.home-page {
-    font-family: 'Arial', sans-serif;
+.home-page h3, 
+.home-page h4, 
+.home-page p {
+    color: black; /* Sets text color to black */
 }
 
-.features-section h3 {
-    margin-top: 1rem;
-    color: #007bff;
+.home-page .shadow-sm {
+    background-color: #c7c2c2; /* Dark grey for contrast */
+    color: white; /* White text for readability */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow to elevate the box */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
 }
 
+.home-page .shadow-sm:hover {
+    transform: translateY(-5px); /* Slightly lift the box when hovered */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c7c2c2;
+    color: white; /* White text to pop against dark background */
+    padding: 60px; /* Add padding to create space inside the box */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    max-width: 1200px; /* Limit the width of the section */
+    margin: 40px auto; /* Center the section horizontally and add spacing */
+  }
+  
+  /* Hero Image */
+  .hero-image img {
+    width: 75%; /* Image takes up half the hero section */
+    border-radius: 10px; /* Image follows rounded corners */
+    object-fit: cover; /* Ensure the image covers the available area */
+  }
+  
+  /* Hero Content */
+  .hero-content {
+    max-width: 50%; /* Limit content width to balance with the image */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Headline Text */
+  .hero-content h1 {
+    color: #080808;
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Paragraph Text */
+  .hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Call-to-Action Buttons */
+  .cta-buttons {
+    display: flex;
+    gap: 20px; /* Spacing between buttons */
+  }
+  
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #080808;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button.secondary {
+    background-color: #080808; /* Secondary button color */
+  }
+  
+  .cta-button:hover {
+    background-color: #555; /* Hover effect for primary button */
+  }
+  
+  .cta-button.secondary:hover {
+    background-color: #555; /* Hover effect for secondary button */
+  }
+  
+  /* Responsive Design for Smaller Screens */
+  @media (max-width: 768px) {
+    .hero-section {
+      flex-direction: column; /* Stack image and content vertically on smaller screens */
+      text-align: center; /* Center text for better mobile readability */
+      padding: 40px;
+    }
+  
+    .hero-image img {
+      width: 100%; /* Image takes full width on mobile */
+      margin-bottom: 20px;
+    }
+  
+    .hero-content {
+      max-width: 100%; /* Full width content on mobile */
+    }
+  
+    .hero-content h1 {
+      font-size: 2rem; /* Reduce headline size on mobile */
+    }
+  
+    .cta-buttons {
+      flex-direction: column; /* Stack buttons vertically */
+    }
+  }

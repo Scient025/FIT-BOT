@@ -1,30 +1,49 @@
 import React from 'react';
 import './Home.css';
+import fitnessImage from './fitness-image.jpg';
 
 const Home = () => {
     return (
         <div className="home-page">
-            <section className="features-section py-5">
-                <div className="container">
-                    <div className="row text-center">
-                        <div className="col-md-4">
-                            <i className="fas fa-running fa-3x text-primary"></i>
-                            <h3 className="mt-3">Track Workouts</h3>
-                            <p>Log and monitor your daily workout routines.</p>
-                        </div>
-                        <div className="col-md-4">
-                            <i className="fas fa-heartbeat fa-3x text-primary"></i>
-                            <h3 className="mt-3">Monitor Health</h3>
-                            <p>Keep track of key health metrics like heart rate, calories, and steps.</p>
-                        </div>
-                        <div className="col-md-4">
-                            <i className="fas fa-users fa-3x text-primary"></i>
-                            <h3 className="mt-3">Join the Community</h3>
-                            <p>Connect with others, share progress, and stay motivated.</p>
-                        </div>
-                    </div>
+            <div className="hero-section">
+            <div className="hero-image">
+                <img src={fitnessImage} alt="Fitness Tracking" />
+            </div>
+            <div className="hero-content">
+                <h1>Transform Your Fitness Journey</h1>
+                <p>Track your workouts, set goals, and achieve your fitness dreams with ease.</p>
+                <div className="cta-buttons">
+                <button className="cta-button">Get Started</button>
+                <button className="cta-button secondary">Log In</button>
                 </div>
-            </section>
+            </div>
+            </div>
+            <div className={`py-5 text-center text-light`}>
+            <div className="container">
+              <h3>What we provide</h3><br></br>
+              <div className="row g-4">
+                <div className="col-md-4">
+                  <div className={`p-4 shadow-sm h-100`}>
+                    <h4>Custom Workouts</h4>
+                    <p>Tailored exercises based on your fitness level, goals, and preferences. Start your journey with plans designed just for you.</p>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className={`p-4 shadow-sm h-100`}>
+                    <h4>Nutrition Tracking</h4>
+                    <p>Monitor your meals and macros to stay on top of your diet. Our tools help you maintain a healthy and balanced lifestyle.</p>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className={`p-4 shadow-sm h-100`}>
+                    <h4>Community Support</h4>
+                    <p>Connect with fitness enthusiasts, share tips, and stay motivated through group challenges and community discussions.</p>
+                  </div>
+                </div>
+                <h3>Join us on your Fitness Journey</h3>
+              </div>
+            </div>
+            </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import fitnessRoutes from './routes/fitnessRoutes.js';
+import chatbotRoutes from './routes/chatbotRoutes.js'
 
 dotenv.config();
 

@@ -17,7 +17,7 @@ const Header = () => {
                             <Link className="nav-link" to="/tracker">Tracker</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="#">Bot</Link>
+                            <Link className="nav-link" to="Chatbot">Chatbot</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="#">Network</Link>

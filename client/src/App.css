@@ -1,0 +1,78 @@
+/* src/App.css */
+
+/* Global Styles */
+body {
+  background-color: #000; /* Black background for the whole site */
+  color: #fff; /* White text color */
+  margin: 0;
+  font-family: 'Arial', sans-serif; /* Set a clean font */
+}
+
+/* Header Styles */
+.navbar {
+  background-color: #111; /* Darker background for navbar */
+}
+
+.navbar-nav .nav-link {
+  margin: 0 15px; /* Add spacing between links */
+}
+
+.footer {
+  background-color: #111; /* Darker footer */
+  padding: 20px;
+  text-align: center;
+  color: #fff; /* White text for footer */
+}
+
+/* Jumbotron Styles */
+.jumbotron {
+  background-color: #222; /* Dark background for jumbotron */
+  color: #fff; /* White text for jumbotron */
+  padding: 40px;
+  border-radius: 5px;
+}
+
+/* App Layout */
+.App {
+  text-align: center;
+}
+
+/* Button Styles */
+.btn-dark {
+  background-color: #444; /* Dark button background */
+  border: none;
+  color: #fff; /* White text for buttons */
+}
+
+/* Input and Textarea Styles */
+.form-control {
+  background-color: #333; /* Dark background for input fields */
+  color: #fff; /* White text for input fields */
+  border: 1px solid #444; /* Dark border for input fields */
+}
+
+/* Placeholder Color */
+::placeholder {
+  color: #aaa; /* Light gray placeholder text */
+}
+
+/* Table Styles */
+.table {
+  color: #fff; /* White text for tables */
+}
+
+.table th, .table td {
+  border-color: #444; /* Dark borders for tables */
+}
+
+/* Card Styles */
+.card {
+  background-color: #333; /* Dark background for cards */
+  border: none; /* Remove card border */
+  color: #fff; /* White text for cards */
+}
+
+/* Center alignment for headings */
+h2 {
+  margin: 20px 0;
+}

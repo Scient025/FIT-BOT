@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Tracker from './components/Tracker';
 import Query from './components/Query';
 import './App.css';
+import Chatbot from './components/Chatbot';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/tracker" element={<Tracker />} />
                     <Route path="/query" element={<Query />} />
+                    <Route path="/Chatbot" element={<Chatbot />} />
                 </Routes>
             </div>
             <Footer />

@@ -17,6 +17,7 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => console.log(err));
 
 app.use('/api/fitness', fitnessRoutes);
+app.use('/api/chatbot', chatbotRoutes); 
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

@@ -26,6 +26,6 @@ function App() {
     );
 }
 
-// testing a commit req
+// testing
 
 export default App;

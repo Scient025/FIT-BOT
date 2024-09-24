@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Query = () => {
+const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
     const handleChange = (e) => {
@@ -10,8 +10,12 @@ const Query = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.name || !formData.email || !formData.message) {
+            alert('Please fill out all fields.');
+            return;
+        }
         try {
-            const response = await axios.post('http://localhost:5000/api/fitness/queries', formData);
+            const response = await axios.post('http://localhost:5000/api/fitness/contact', formData);
             console.log(response.data);
             setFormData({ name: '', email: '', message: '' });
         } catch (error) {
@@ -44,4 +48,4 @@ const Query = () => {
     );
 };
 
-export default Query;
+export default Contact;

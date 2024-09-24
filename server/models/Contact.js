@@ -1,12 +1,11 @@
-// models/Query.js
 import mongoose from 'mongoose';
 
-const querySchema = new mongoose.Schema({
+const contactSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     message: { type: String, required: true },
 }, { timestamps: true });
 
-const Query = mongoose.model('Query', querySchema);
+const Contact = mongoose.model('Contact', contactSchema);
 
-export default Query;
+export default Contact;

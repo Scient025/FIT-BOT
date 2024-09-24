@@ -1,17 +1,18 @@
 // routes/fitnessRoutes.js
 import express from 'express';
-import Query from '../models/User.js';
+import Contact from '../models/Contact.js';
 
 const router = express.Router();
 
 // POST route to handle form submissions
-router.post('/queries', async (req, res) => {
+router.post('/contact', async (req, res) => {
     try {
-        const newQuery = new Query(req.body);
-        await newQuery.save();
-        res.status(201).json(newQuery);
+        const newContact = new Contact(req.body);
+        await newContact.save();
+        res.status(201).json(newContact);
     } catch (error) {
-        res.status(400).json({ error: 'Failed to save query' });
+        console.error(error);
+        res.status(400).json({ error: 'Failed to save contact' });
     }
 });
 

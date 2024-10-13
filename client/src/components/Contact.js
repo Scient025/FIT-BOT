@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Contact.css'
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -29,7 +30,7 @@ const Contact = () => {
             <div className="jumbotron bg-light text-dark text-center">
                 <p>If you have any questions or need assistance, please fill out the form below.</p>
             </div>
-            <form className="container" onSubmit={handleSubmit}>
+            <form className="contact-container" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" className="form-control" id="name" placeholder="Enter your name" onChange={handleChange} value={formData.name} />

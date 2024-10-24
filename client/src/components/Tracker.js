@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 import './Tracker.css';
 
 const Tracker = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [workouts, setWorkouts] = useState(null); // No type annotations
+    const [workouts, setWorkouts] = useState(null);
 
     const getWorkouts = async () => {
         const data = [
@@ -19,7 +15,6 @@ const Tracker = () => {
             {
                 type: 'Abs',
                 imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzJTIwd29ya291dHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-
             },
             {
                 type: 'Shoulder',
@@ -46,15 +41,11 @@ const Tracker = () => {
 
             },
             {
-                type: 'Cardio',
-                imageUrl: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2FyZGlvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-
-            },
-            {
                 type: 'Forearms',
                 imageUrl: 'https://images.unsplash.com/photo-1591940742878-13aba4b7a34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZWFybXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
 
             }
+            // Add more workouts as needed...
         ];
         setWorkouts(data);
     };
@@ -64,72 +55,37 @@ const Tracker = () => {
     }, []);
 
     return (
-        <div style={{ backgroundColor: 'black', color: 'white', minHeight: '100vh' }}>
+        <div className="tracker-page">
             {/* Search Bar */}
-            <div className="container mb-3 pt-5">
-                <div className="row justify-content-center">
-                    <div className="col-md-8 col-lg-6">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            style={{ backgroundColor: 'white' }}
-                        />
-                    </div>
-                </div>
+            <div className="search-bar">
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
             </div>
 
             {/* Workouts Section */}
-            <h1 className='mainhead1 text-center'>Workouts</h1>
-            <Swiper
-                slidesPerView={1}
-                spaceBetween={10}
-                pagination={{
-                    clickable: true,
-                }}
-                breakpoints={{
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                    },
-                    768: {
-                        slidesPerView: 4,
-                        spaceBetween: 40,
-                    },
-                    1024: {
-                        slidesPerView: 5,
-                        spaceBetween: 50,
-                    },
-                }}
-                modules={[Pagination]}
-                className="mySwiper"
-            >
+            <h1 className="main-heading">Workouts</h1>
+            <div className="workouts-container">
                 {
                     workouts && workouts.map((item, index) => {
                         return (
-                            <SwiperSlide key={index}>
-                                <div className='swiper-slide'
+                            <Link to={`/workout/${item.type.toLowerCase()}`} className="workout-card" key={index}>
+                                <div
+                                    className="workout-card-image"
                                     style={{
                                         backgroundImage: `url(${item.imageUrl})`,
-                                        backgroundSize: 'cover',
-                                        height: '200px', // Adjust height as needed
-                                        display: 'flex',
-                                        alignItems: 'flex-end',
-                                        padding: '20px',
-                                        color: 'white',
                                     }}
-                                >
-                                    <div className='swiper-slide-content'>
-                                        <h2>{item.type}</h2>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
+                                ></div>
+                                <h2 className="workout-card-title">{item.type}</h2>
+                            </Link>
                         )
                     })
                 }
-            </Swiper>
+            </div>
         </div>
     );
 };

@@ -1,73 +1,31 @@
-/* Header.css */
-
-/* Set blue background for the header */
-.navbar { /* Bootstrap primary blue */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 0.75rem 1rem;
-}
-
-.navbar-brand {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.8rem;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.navbar-brand:hover {
-    color: #f8f9fa;
-    text-decoration: none;
-}
-
-/* Flexbox to make sure brand and nav items are side by side */
-.container-fluid {
+.header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.nav-link {
+.header-menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    color: white;
+}
+
+.header-menu>li {
     cursor: pointer;
 }
 
-.navbar-nav {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    gap: 15px; /* Space between the items */
+.header-menu>li:hover {
+    color: var(--orange);
+    cursor: pointer;
 }
 
-.navbar-nav .nav-item .nav-link {
-    color: #f8f9fa;
-    font-size: 1.1rem;
-    transition: color 0.3s ease-in-out;
-    text-decoration: none;
+.header-menu > li > a {
+    color: white; /* Set the text color to white */
+    text-decoration: none; /* Remove underline from links */
 }
 
-.navbar-nav .nav-item .nav-link:hover {
-    color: #f39c12 !important;
-}
-
-/* Remove border and background for the toggler button */
-.navbar-toggler {
-    border: none;
-}
-
-/* Ensure nav items stay horizontal on mobile until collapsed */
-@media (max-width: 992px) {
-    .navbar-nav {
-        flex-direction: column; /* Stack nav items vertically */
-        text-align: center; /* Center text in mobile view */
-        align-items: center; /* Center align items horizontally */
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%; /* Make nav items full width */
-    }
-
-    .navbar-nav .nav-link {
-        display: block; /* Ensure links take up full width */
-        padding: 10px; /* Add padding for better touch target */
-    }
+.header-title {
+    color: white; /* Set the title text color to white */
+    font-size: 2rem; /* Increase the font size of the title */
+    text-decoration: none; /* Remove underline from the title link */
 }

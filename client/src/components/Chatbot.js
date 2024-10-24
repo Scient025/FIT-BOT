@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Chatbot.css';
 
 const Chatbot = () => {
     const [messages, setMessages] = useState([]);
@@ -36,25 +37,25 @@ const Chatbot = () => {
     };
 
     return (
-        <div>
-            <div style={{ height: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px' }}>
+        <div className="chatbot-container">
+            <div className="chat-window">
                 {messages.map((msg, index) => (
-                    <div key={index} style={{ textAlign: msg.user ? 'right' : 'left' }}>
-                        <p style={{ background: msg.user ? '#d1e7ff' : '#f1f1f1', display: 'inline-block', padding: '5px 10px', borderRadius: '5px' }}>
+                    <div key={index} className={`chat-message ${msg.user ? 'user' : 'bot'}`}>
+                        <p className={`chat-bubble ${msg.user ? 'user' : 'bot'}`}>
                             {msg.text}
                         </p>
                     </div>
                 ))}
             </div>
-            <form onSubmit={handleSubmit} style={{ marginTop: '10px' }}>
+            <form className="chat-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Ask ChatGPT..."
-                    style={{ width: '80%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+                    className="chat-input"
                 />
-                <button type="submit" style={{ width: '18%', marginLeft: '2%', padding: '10px', borderRadius: '5px', background: 'black', color: 'white' }}>
+                <button type="submit" className="chat-submit">
                     Send
                 </button>
             </form>

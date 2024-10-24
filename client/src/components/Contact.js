@@ -26,11 +26,11 @@ const Contact = () => {
 
     return (
         <div>
-            <h2 className="text-center">Contact Us</h2>
-            <div className="jumbotron bg-light text-dark text-center">
-                <p>If you have any questions or need assistance, please fill out the form below.</p>
-            </div>
             <form className="contact-container" onSubmit={handleSubmit}>
+                <h2 className="text-center">Contact Us</h2>
+                <div className="jumbotron bg-light text-dark text-center">
+                    <p>If you have any questions or need assistance, please fill out the form below.</p>
+                </div>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" className="form-control" id="name" placeholder="Enter your name" onChange={handleChange} value={formData.name} />

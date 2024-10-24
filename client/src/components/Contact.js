@@ -25,7 +25,7 @@ const Contact = () => {
     };
 
     return (
-        <div>
+        <div className='contact'>
             <form className="contact-container" onSubmit={handleSubmit}>
                 <h2 className="text-center">Contact Us</h2>
                 <div className="jumbotron bg-light text-dark text-center">

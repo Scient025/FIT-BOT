@@ -13,6 +13,7 @@ import Community from './components/Community';
 import Chatbot from './components/Chatbot';
 import SignUp from './components/signUp';
 import Login from './components/Login';
+import Footer from './components/Footer'
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -71,6 +72,7 @@ const App = () => {
                 <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/chatbot" />} />
                 <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/community" />} />
             </Routes>
+            <Footer />
         </>
     );
 }

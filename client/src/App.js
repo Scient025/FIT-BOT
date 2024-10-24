@@ -14,6 +14,14 @@ import Chatbot from './components/Chatbot';
 import SignUp from './components/signUp';
 import Login from './components/Login';
 import Footer from './components/Footer'
+import BackPage from './components/BackPage';
+import LegsPage from './components/LegsPage';
+import ChestPage from './components/ChestPage';
+import AbsPage from './components/AbsPage';
+import ShouldersPage from './components/ShoulderPage';
+import TricepsPage from './components/TricepsPage';
+import BicepsPage from './components/BicepsPage';
+import ForearmsPage from './components/ForearmsPage';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -69,6 +77,17 @@ const App = () => {
                     <Navigate to="/home" />
                 )} />
                 <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <Navigate to="/tracker" />} />
+
+                {/* Workout-specific routes */}
+                <Route path="/workout/back" element={<BackPage />} />
+                <Route path="/workout/legs" element={<LegsPage />} />
+                <Route path="/workout/chest" element={<ChestPage />} />
+                <Route path="/workout/abs" element={<AbsPage />} />
+                <Route path="/workout/shoulders" element={<ShouldersPage />} />
+                <Route path="/workout/triceps" element={<TricepsPage />} />
+                <Route path="/workout/biceps" element={<BicepsPage />} />
+                <Route path="/workout/forearms" element={<ForearmsPage />} />
+                
                 <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/chatbot" />} />
                 <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/community" />} />
             </Routes>

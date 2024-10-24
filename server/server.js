@@ -2,10 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import fitnessRoutes from './routes/contact.js';
+import contactRoutes from './routes/contact.js';
 import chatbotRoutes from './routes/chatbotRoutes.js'
 import registerRoutes from './routes/register.js'
 import loginRoutes from './routes/login.js';
+import fitnessRoutes from './routes/fitnessRoutes.js';
+
 
 dotenv.config();
 
@@ -24,6 +26,8 @@ app.use('/api/fitness', fitnessRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/login', loginRoutes);
+app.use('/api/contact', contactRoutes);
+
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 

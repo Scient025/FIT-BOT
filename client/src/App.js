@@ -65,11 +65,11 @@ const App = () => {
                         <Programs />
                     </>
                 ) : (
-                    <Navigate to="/login" />
+                    <Navigate to="/home" />
                 )} />
-                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <Navigate to="/login" />} />
-                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/login" />} />
-                <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/login" />} />
+                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <Navigate to="/tracker" />} />
+                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/chatbot" />} />
+                <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/community" />} />
             </Routes>
         </>
     );

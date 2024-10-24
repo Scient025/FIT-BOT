@@ -15,7 +15,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT;
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .then(() => console.log(`${mongoose.connection.host}`))
     .catch(err => console.log(err));

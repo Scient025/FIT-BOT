@@ -22,23 +22,17 @@ function Signup({ setIsAuthenticated }) {
 
             console.log(result);
 
-            // Assuming the response contains a token (modify based on your API response)
-            // const token = result.data.token;
-            // if (token) {
-            //     // Save token in localStorage
-            //     localStorage.setItem('authToken', token);
-
-            // Instead of expecting a token, check if result is successful
-            if (result.status === 201) {
-                // Registration is successful
-                // Save user data in localStorage if needed
-                localStorage.setItem('userData', JSON.stringify(result.data));
+            // Check for token and store it in localStorage
+            const token = result.data.token;
+            if (token) {
+                // Save token in localStorage
+                localStorage.setItem('authToken', token);
 
                 // Set authentication state to true
                 setIsAuthenticated(true);
 
                 // Navigate to home page after successful registration
-                navigate('/login');
+                navigate('/home');
             } else {
                 setErrorMessage('Registration failed. Please try again.');
             }

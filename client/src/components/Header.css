@@ -27,6 +27,10 @@
     align-items: center;
 }
 
+.nav-link {
+    cursor: pointer;
+}
+
 .navbar-nav {
     display: flex;
     flex-direction: row;
@@ -42,7 +46,7 @@
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    color: #f39c12;
+    color: #f39c12 !important;
 }
 
 /* Remove border and background for the toggler button */
@@ -53,10 +57,17 @@
 /* Ensure nav items stay horizontal on mobile until collapsed */
 @media (max-width: 992px) {
     .navbar-nav {
-        flex-direction: column;
+        flex-direction: column; /* Stack nav items vertically */
+        text-align: center; /* Center text in mobile view */
+        align-items: center; /* Center align items horizontally */
     }
 
     .navbar-nav .nav-item {
-        text-align: center;
+        width: 100%; /* Make nav items full width */
+    }
+
+    .navbar-nav .nav-link {
+        display: block; /* Ensure links take up full width */
+        padding: 10px; /* Add padding for better touch target */
     }
 }

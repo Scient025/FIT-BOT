@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// Define schema for chat history
 const messageSchema = new mongoose.Schema({
     userMessage: {
         type: String,

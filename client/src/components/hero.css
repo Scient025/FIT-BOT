@@ -6,7 +6,7 @@
 
 .left-h {
     padding: 2rem;
-    padding-top: 1rem;
+    padding-top: 5rem;
     flex: 3;
 }
 
@@ -89,6 +89,7 @@
 }
 
 .hero-image {
+    top: 1rem;
     position: absolute;
     right: 9rem;
     width: 23rem;

@@ -16,7 +16,6 @@ const Programs = () => {
                     {program.image}
                     <span>{program.heading}</span>
                     <span>{program.details}</span>
-                    <div className="join-now"><span>Join now</span><img src={RightArrow} alt="" /></div>
                 </div>
             ))}
         </div>

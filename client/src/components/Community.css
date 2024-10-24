@@ -1,0 +1,75 @@
+.community-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f7f9fc; /* Light background color for contrast */
+    border-radius: 10px; /* Rounded corners */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.post-form {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-form input,
+.post-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px; /* Increased font size */
+}
+
+.posts-container {
+    max-height: 500px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 20px;
+}
+
+.post {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.comments-section {
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.comments-section h4 {
+    margin-bottom: 5px;
+}
+
+.comments-section form {
+    display: flex;
+    margin-top: 10px;
+}
+
+.comments-section form input {
+    margin-right: 5px;
+}

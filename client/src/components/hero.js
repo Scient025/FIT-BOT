@@ -1,8 +1,9 @@
 import React from "react";
-import './hero.css'
-import Heart from "./heart.png"
-import hero_image from "./hero_image.png"  
-import hero_image_back from "./hero_image_back.png"  
+import './hero.css';
+import Heart from "./heart.png";
+import hero_image from "./hero_image.png";
+import hero_image_back from "./hero_image_back.png";
+import { Link } from "react-router-dom"; // Import the Link component
 
 const Hero = () => {
     return (
@@ -18,12 +19,13 @@ const Hero = () => {
                 </div>
 
                 <div className="hero-buttons">
-                    <buttons className="btn">Get Started</buttons>
-                    <buttons className="btn">Learn More</buttons>
+                    {/* Use Link to navigate to the tracker page */}
+                    <Link to="/tracker" className="btn">
+                        Get Started
+                    </Link>
                 </div>
             </div>
             <div className="right-h">
-
                 <div className="heart-rate">
                     <img src={Heart} alt="" />
                     <span>Heart Rate</span><span>116 BPM</span>
@@ -33,7 +35,7 @@ const Hero = () => {
                 <img src={hero_image_back} alt="" className="hero-image-back" />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Hero
+export default Hero;

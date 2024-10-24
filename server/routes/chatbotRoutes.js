@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import Message from '../models/Message.js';  // Mongoose model for saving chat history
+import Message from '../models/ChatbotMsgs.js';
 import dotenv from 'dotenv';
 
 dotenv.config();

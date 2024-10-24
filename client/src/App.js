@@ -1,28 +1,60 @@
 // src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import Home from './components/Home';
 import Tracker from './components/Tracker';
-import Query from './components/Query';
-import './App.css';
+import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
+import SignUp from './components/signUp';
+import Login from './components/Login';
 
-function App() {
+const App = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
+
+    // Check if the user is logged in based on localStorage
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            setIsAuthenticated(true);
+        }
+    }, []);
+
+    // Function to handle logout
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        setIsAuthenticated(false);
+        navigate('/login');
+    };
+
     return (
-        <Router>
-            <Header />
-            <div className="container">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/tracker" element={<Tracker />} />
-                    <Route path="/query" element={<Query />} />
-                    <Route path="/Chatbot" element={<Chatbot />} />
-                </Routes>
-            </div>
-            <Footer />
-        </Router>
+        <>
+            {/* Conditional rendering of headers */}
+            <Header isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+
+            <Routes>
+                {/* Public routes */}
+                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/contact" element={<Contact />} />
+
+                {/* Redirect root to login/signup */}
+                <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
+
+                {/* Private routes (only accessible when logged in) */}
+                <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <Navigate to="/login" />} />
+                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/login" />} />
+
+                {/* <Route path="/" element={<Home />} />
+                <Route path="/tracker" element={<Tracker />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/Chatbot" element={<Chatbot />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} /> */}
+            </Routes>
+        </>
     );
 }
 

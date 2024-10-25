@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({ setIsAuthenticated }) {
+function Login({ setIsAuthenticated, onLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -13,17 +13,11 @@ function Login({ setIsAuthenticated }) {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/api/login', { email, password });
-            
-            // Check if the response contains a token
             const token = response.data.token;
             if (token) {
-                // Save the token in localStorage
                 localStorage.setItem('authToken', token);
-
-                // Set authentication state to true
                 setIsAuthenticated(true);
-
-                // Navigate to home page
+                onLogin(); // Trigger notification
                 navigate('/home');
             } else {
                 setErrorMessage('Login failed. Please check your credentials.');

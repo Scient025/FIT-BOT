@@ -22,9 +22,11 @@ import ShouldersPage from './components/ShoulderPage';
 import TricepsPage from './components/TricepsPage';
 import BicepsPage from './components/BicepsPage';
 import ForearmsPage from './components/ForearmsPage';
+import Notification from './components/Notification';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [notification, setNotification] = useState(null);
     const navigate = useNavigate();
 
     const isTokenExpired = (token) => {
@@ -50,17 +52,37 @@ const App = () => {
     const handleLogout = () => {
         localStorage.removeItem('authToken');
         setIsAuthenticated(false);
+        showNotification("Successfully logged out!");
         navigate('/login');
+    };
+
+    const showNotification = (message) => {
+        setNotification(message);
+        setTimeout(() => {
+            setNotification(null);
+        }, 7000);
+    };
+
+    const handleLogin = () => {
+        showNotification("Successfully logged in!");
+    };
+
+    const handleSignup = () => {
+        showNotification("Successfully signed up!");
     };
 
     return (
         <>
             <Header isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
 
+            {notification && (
+                <Notification message={notification} onClose={() => setNotification(null)} />
+            )}
+
             <Routes>
                 {/* Public routes */}
-                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-                <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} onLogin={handleLogin} />} />
+                <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} onSignUp={handleSignup} />} />
                 <Route path="/contact" element={<Contact />} />
 
                 {/* Redirect root to login/signup */}
@@ -87,7 +109,7 @@ const App = () => {
                 <Route path="/workout/triceps" element={<TricepsPage />} />
                 <Route path="/workout/biceps" element={<BicepsPage />} />
                 <Route path="/workout/forearms" element={<ForearmsPage />} />
-                
+
                 <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/chatbot" />} />
                 <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/community" />} />
             </Routes>

@@ -1,3 +1,4 @@
+/* Header.css */
 .header {
     display: flex;
     justify-content: space-between;
@@ -10,22 +11,62 @@
     color: white;
 }
 
-.header-menu>li {
+.header-menu > li {
     cursor: pointer;
 }
 
-.header-menu>li:hover {
+.header-menu > li:hover {
     color: var(--orange);
     cursor: pointer;
-}
-
-.header-menu > li > a {
-    color: white; /* Set the text color to white */
-    text-decoration: none; /* Remove underline from links */
 }
 
 .header-title {
     color: white; /* Set the title text color to white */
     font-size: 2rem; /* Increase the font size of the title */
     text-decoration: none; /* Remove underline from the title link */
+}
+
+.nav-link.logout-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link.logout-btn:hover {
+    background-color: darkred;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar-collapse {
+    transition: max-height 0.3s ease;
+}
+
+.navbar-collapse.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; /* Center items in the dropdown */
+}
+
+.nav-item {
+    width: 100%; /* Ensure full width for clickable area */
+    text-align: center; /* Center text */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.nav-link {
+    color: white; /* Default text color */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the link fill the nav-item */
+    padding: 10px 0; /* Vertical padding */
+}
+
+.nav-link:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: var(--orange); /* Change text color on hover */
 }

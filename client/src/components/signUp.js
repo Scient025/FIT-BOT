@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './signUp.css';
 
-function Signup({ setIsAuthenticated }) {
+function Signup({ setIsAuthenticated, onSignUp }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,25 +13,17 @@ function Signup({ setIsAuthenticated }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Post request to register the user
             const result = await axios.post('http://localhost:5000/api/register', {
                 name,
                 email,
                 password
             });
 
-            console.log(result);
-
-            // Check for token and store it in localStorage
             const token = result.data.token;
             if (token) {
-                // Save token in localStorage
                 localStorage.setItem('authToken', token);
-
-                // Set authentication state to true
                 setIsAuthenticated(true);
-
-                // Navigate to home page after successful registration
+                onSignUp(); // Trigger notification
                 navigate('/home');
             } else {
                 setErrorMessage('Registration failed. Please try again.');

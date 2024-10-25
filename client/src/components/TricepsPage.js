@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const TricepsPage = () => {
     const [workoutInput, setWorkoutInput] = useState({
-        workout: 'Back', // preset since it's for Back workout
+        exercise: '',
         weight: '',
-        reps: '',
         sets: '',
+        reps: '',
         caloriesBurned: ''
     });
 
@@ -13,64 +14,68 @@ const TricepsPage = () => {
         const { name, value } = e.target;
         setWorkoutInput({
             ...workoutInput,
-            [name]: value
+            [name]: value,
         });
     };
 
-    const submitWorkout = () => {
-        console.log('Workout Data:', workoutInput);
-        // Handle the data submission here (e.g., send to API or save locally)
-        alert('Workout data submitted!');
+    const submitWorkout = async (e) => {
+        e.preventDefault();
+        if (!workoutInput.weight || !workoutInput.sets || !workoutInput.reps || !workoutInput.caloriesBurned) {
+            alert('Please fill out all fields.');
+            return;
+        }
+        try {
+            const response = await axios.post('http://localhost:5000/api/fitness/triceps', workoutInput);
+            console.log('Server response:', response.data);
+            alert('Triceps workout saved successfully!');
+            setWorkoutInput({ exercise: '', weight: '', sets: '', reps: '', caloriesBurned: '' });
+        } catch (error) {
+            console.error('Error saving workout:', error);
+            alert(`Failed to save workout: ${error.response?.data?.error || error.message}`);
+        }
     };
-
+    
     return (
         <div>
             <h1>Triceps Workout</h1>
-
-            <div className="workout-inputs">
-                <label>
-                    Weight:
-                    <input
-                        type="number"
-                        name="weight"
-                        value={workoutInput.weight}
-                        onChange={handleInputChange}
-                        placeholder="Enter weight used"
-                    />
-                </label>
-                <label>
-                    Reps:
-                    <input
-                        type="number"
-                        name="reps"
-                        value={workoutInput.reps}
-                        onChange={handleInputChange}
-                        placeholder="Enter number of reps"
-                    />
-                </label>
-                <label>
-                    Sets:
-                    <input
-                        type="number"
-                        name="sets"
-                        value={workoutInput.sets}
-                        onChange={handleInputChange}
-                        placeholder="Enter number of sets"
-                    />
-                </label>
-                <label>
-                    Calories Burned:
-                    <input
-                        type="number"
-                        name="caloriesBurned"
-                        value={workoutInput.caloriesBurned}
-                        onChange={handleInputChange}
-                        placeholder="Enter calories burned"
-                    />
-                </label>
-            </div>
-
-            <button onClick={submitWorkout}>Submit</button>
+            <form onSubmit={submitWorkout}>
+                <input
+                    type="text"
+                    name="exercise"
+                    placeholder="Exercise"
+                    value={workoutInput.exercise}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="number"
+                    name="weight"
+                    placeholder="Weight"
+                    value={workoutInput.weight}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="number"
+                    name="sets"
+                    placeholder="Sets"
+                    value={workoutInput.sets}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="number"
+                    name="reps"
+                    placeholder="Reps"
+                    value={workoutInput.reps}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="number"
+                    name="caloriesBurned"
+                    placeholder="Calories Burned"
+                    value={workoutInput.caloriesBurned}
+                    onChange={handleInputChange}
+                />
+                <button type="submit">Submit Workout</button>
+            </form>
         </div>
     );
 };

@@ -1,31 +1,47 @@
+// routes/tracker.js
 import express from 'express';
-import Tracker from '../models/Tracker.js'; // Importing the Tracker model
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
-// POST route for specific tracker types
+// POST route to save workout in dynamic collections based on type
 router.post('/Tracker/:type', async (req, res) => {
+    const { type } = req.params; // Extract the workout type (e.g., Back, Chest, etc.)
+    const { weight, sets, reps, caloriesBurned } = req.body;
+    console.log(`Request to save ${type} workout:`, req.body);
     try {
-        const { type } = req.params;
-        const newTracker = new Tracker({ ...req.body, type });
-        await newTracker.save();
-        console.log(`${type} tracker saved:`, newTracker);
-        res.status(201).json(newTracker);
+        // Check if the model already exists in mongoose's model cache and delete it if so
+        if (mongoose.models[type]) {
+            delete mongoose.models[type];
+        }
+
+        // Dynamically define a collection based on the workout type
+        const dynamicCollection = mongoose.model(type, new mongoose.Schema({
+            type: { type: String, required: true },
+            weight: { type: Number, required: true },
+            sets: { type: Number, required: true },
+            reps: { type: Number, required: true },
+            caloriesBurned: { type: Number, required: true },
+        }), type);
+
+        // Create a new document and save it to the corresponding workout collection
+        const newWorkout = new dynamicCollection({
+            type,
+            weight,
+            sets,
+            reps,
+            caloriesBurned
+        });
+
+        await newWorkout.save(); // Save the workout to the corresponding collection
+
+        console.log(`${type} workout saved:`, newWorkout);
+        res.status(201).json(newWorkout);
     } catch (error) {
-        console.error(`Failed to save ${req.params.type} tracker:`, error);
-        res.status(400).json({ error: `Failed to save ${req.params.type} tracker` });
+        console.error(`Failed to save ${type} workout:`, error);
+        res.status(400).json({ error: `Failed to save ${type} workout` });
     }
 });
 
-// GET route to retrieve all trackers
-router.get('/Tracker', async (req, res) => {
-    try {
-        const trackers = await Tracker.find();
-        res.status(200).json(trackers);
-    } catch (error) {
-        console.error('Failed to retrieve trackers:', error);
-        res.status(500).json({ error: 'Failed to retrieve trackers' });
-    }
-});
 
 export default router;

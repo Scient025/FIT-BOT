@@ -54,7 +54,7 @@
 }
 
 .nav-item {
-    width: 100%; /* Ensure full width for clickable area */
+    width: auto; /* Change width to auto to prevent wrapping */
     text-align: center; /* Center text */
     cursor: pointer; /* Change cursor to pointer */
 }
@@ -64,6 +64,7 @@
     text-decoration: none; /* Remove underline */
     display: block; /* Make the link fill the nav-item */
     padding: 10px 0; /* Vertical padding */
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .nav-link:hover {

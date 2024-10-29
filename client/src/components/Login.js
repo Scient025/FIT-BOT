@@ -2,6 +2,8 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Spline from '@splinetool/react-spline';
+import './Login.css';
 
 function Login({ setIsAuthenticated, onLogin }) {
     const [email, setEmail] = useState('');
@@ -33,8 +35,12 @@ function Login({ setIsAuthenticated, onLogin }) {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-            <div className="bg-white p-3 rounded w-25">
+        <div className="login-container">
+            <Spline
+                scene="https://prod.spline.design/Du4trVvICiT5NtSh/scene.splinecode"
+                className="spline-background" 
+            />
+            <div className="login-form">
                 <h2>Login</h2>
 
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}

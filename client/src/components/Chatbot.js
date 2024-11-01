@@ -1,65 +1,73 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import './Chatbot.css';
 
-const Chatbot = () => {
-    const [messages, setMessages] = useState([]);
-    const [input, setInput] = useState('');
+function Chatbot() {
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [generatingAnswer, setGeneratingAnswer] = useState(false);
 
-    // Function to handle sending messages
-    const sendMessage = async (message) => {
-        setMessages([...messages, { user: true, text: message }]);
+  async function generateAnswer(e) {
+    setGeneratingAnswer(true);
+    e.preventDefault();
+    setAnswer("Loading your answer... \n It might take up to 10 seconds");
 
-        // Fetch response from the backend
-        const response = await fetch('/api/chatbot/sendMessage', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message }),
-        });
+    try {
+      const token = localStorage.getItem("authToken");
 
-        const data = await response.json();
-        const botResponse = data.reply;
+      const response = await axios({
+        url: `${process.env.REACT_APP_SERVER_URL}/api/chatbot/sendMessage`,
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          message: question,
+        },
+      });
 
-        // Append bot response to chat
-        setMessages((prevMessages) => [
-            ...prevMessages,
-            { user: false, text: botResponse },
-        ]);
-    };
+      setAnswer(response.data.reply);
+    } catch (error) {
+      console.error(error);
+      setAnswer("Sorry, something went wrong. Please try again!");
+    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (input.trim()) {
-            sendMessage(input);
-            setInput('');
-        }
-    };
+    setGeneratingAnswer(false);
+  }
 
-    return (
-        <div>
-            <div style={{ height: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px' }}>
-                {messages.map((msg, index) => (
-                    <div key={index} style={{ textAlign: msg.user ? 'right' : 'left' }}>
-                        <p style={{ background: msg.user ? '#d1e7ff' : '#f1f1f1', display: 'inline-block', padding: '5px 10px', borderRadius: '5px' }}>
-                            {msg.text}
-                        </p>
-                    </div>
-                ))}
-            </div>
-            <form onSubmit={handleSubmit} style={{ marginTop: '10px' }}>
-                <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask ChatGPT..."
-                    style={{ width: '80%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
-                />
-                <button type="submit" style={{ width: '18%', marginLeft: '2%', padding: '10px', borderRadius: '5px', background: 'black', color: 'white' }}>
-                    Send
-                </button>
-            </form>
+  return (
+    <div className="chatbot bg-gradient-to-r from-blue-50 to-blue-100 h-screen p-3 flex flex-col justify-center items-center">
+      <div className="chatbot-container">
+        <form
+          onSubmit={generateAnswer}
+          className="text-center rounded-lg shadow-lg py-6 px-4 transition-all duration-500 transform hover:scale-105"
+        >
+          <h1 className="text-4xl font-bold text-blue-500 mb-4 animate-bounce">
+            Fitness Chatbot
+          </h1>
+          <textarea
+            required
+            className="border border-gray-300 rounded w-full my-2 min-h-fit p-3 transition-all duration-300 focus:border-blue-400 focus:shadow-lg"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="Ask anything"
+          ></textarea>
+          <button
+            type="submit"
+            className={`bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition-all duration-300 ${generatingAnswer ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            disabled={generatingAnswer}
+          >
+            Generate answer
+          </button>
+        </form>
+        <div className="chatbot-answer my-4 rounded-lg bg-white shadow-lg p-4 transition-all duration-500 transform hover:scale-105">
+          <ReactMarkdown>{answer}</ReactMarkdown>
         </div>
-    );
-};
+      </div>
+    </div>
+  );
+}
 
 export default Chatbot;

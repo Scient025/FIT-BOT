@@ -1,26 +1,34 @@
 import express from 'express';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import registerModel from '../models/register.js';
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+// POST request to login a user
+router.post('/', async (req, res) => {
     const { email, password } = req.body;
 
-    registerModel.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                if (user.password === password) {
-                    res.json("Success");
-                } else {
-                    res.json("The password is incorrect");
-                }
-            } else {
-                res.json("No record existed");
-            }
-        })
-        .catch(err => {
-            res.status(500).json({ error: err.message });
-        });
+    try {
+        // Check if the user exists
+        const user = await registerModel.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
+
+        // Compare the provided password with the hashed password in the database
+        const isMatch = await bcryptjs.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({ token, user });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
 });
 
 export default router;

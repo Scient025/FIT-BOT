@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ isAuthenticated, handleLogout }) => {
+  const handleLinkClick = (path) => {
+    window.location.pathname = path; // Redirect to the selected page
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -19,43 +23,43 @@ const Header = ({ isAuthenticated, handleLogout }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-          <ul className="navbar-nav">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav mx-auto"> {/* Centering the nav items */}
             {isAuthenticated ? (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/home">Home</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/home')}>
+                  <span className="nav-link">Home</span>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/tracker">Tracker</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/tracker')}>
+                  <span className="nav-link">Tracker</span>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/chatbot">Chatbot</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/chatbot')}>
+                  <span className="nav-link">Chatbot</span>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/community">Community</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/community')}>
+                  <span className="nav-link">Community</span>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/contact">Contact</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="#" onClick={handleLogout}>Logout</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/contact')}>
+                  <span className="nav-link">Contact</span>
                 </li>
               </>
             ) : (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/login')}>
+                  <span className="nav-link">Login</span>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signup">Sign Up</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/signup')}>
+                  <span className="nav-link">Sign Up</span>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/contact">Contact</Link>
+                <li className="nav-item" onClick={() => handleLinkClick('/contact')}>
+                  <span className="nav-link">Contact</span>
                 </li>
               </>
             )}
           </ul>
+          {isAuthenticated && (
+            <Link className="nav-link logout-btn" to="login" onClick={handleLogout}>Logout</Link>
+          )}
         </div>
       </div>
     </nav>

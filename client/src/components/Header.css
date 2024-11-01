@@ -1,73 +1,73 @@
 /* Header.css */
-
-/* Set blue background for the header */
-.navbar { /* Bootstrap primary blue */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 0.75rem 1rem;
-}
-
-.navbar-brand {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.8rem;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.navbar-brand:hover {
-    color: #f8f9fa;
-    text-decoration: none;
-}
-
-/* Flexbox to make sure brand and nav items are side by side */
-.container-fluid {
+.header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.nav-link {
+.header-menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    color: white;
+}
+
+.header-menu > li {
     cursor: pointer;
 }
 
-.navbar-nav {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    gap: 15px; /* Space between the items */
+.header-menu > li:hover {
+    color: var(--orange);
+    cursor: pointer;
 }
 
-.navbar-nav .nav-item .nav-link {
-    color: #f8f9fa;
-    font-size: 1.1rem;
-    transition: color 0.3s ease-in-out;
+.header-title {
+    color: white; /* Set the title text color to white */
+    font-size: 2rem; /* Increase the font size of the title */
+    text-decoration: none; /* Remove underline from the title link */
+}
+
+.nav-link.logout-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link.logout-btn:hover {
+    background-color: darkred;
+    cursor: pointer;
     text-decoration: none;
 }
 
-.navbar-nav .nav-item .nav-link:hover {
-    color: #f39c12 !important;
+.navbar-collapse {
+    transition: max-height 0.3s ease;
 }
 
-/* Remove border and background for the toggler button */
-.navbar-toggler {
-    border: none;
+.navbar-collapse.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center; /* Center items in the dropdown */
 }
 
-/* Ensure nav items stay horizontal on mobile until collapsed */
-@media (max-width: 992px) {
-    .navbar-nav {
-        flex-direction: column; /* Stack nav items vertically */
-        text-align: center; /* Center text in mobile view */
-        align-items: center; /* Center align items horizontally */
-    }
+.nav-item {
+    width: auto; /* Change width to auto to prevent wrapping */
+    text-align: center; /* Center text */
+    cursor: pointer; /* Change cursor to pointer */
+}
 
-    .navbar-nav .nav-item {
-        width: 100%; /* Make nav items full width */
-    }
+.nav-link {
+    color: white; /* Default text color */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the link fill the nav-item */
+    padding: 10px 0; /* Vertical padding */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
 
-    .navbar-nav .nav-link {
-        display: block; /* Ensure links take up full width */
-        padding: 10px; /* Add padding for better touch target */
-    }
+.nav-link:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: var(--orange); /* Change text color on hover */
 }

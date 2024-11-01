@@ -1,6 +1,9 @@
+// src/components/Contact.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Contact.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './Contact.css';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -16,21 +19,22 @@ const Contact = () => {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:5000/api/fitness/contact', formData);
-            console.log(response.data);
+            await axios.post('http://localhost:5000/api/fitness/contact', formData);
             setFormData({ name: '', email: '', message: '' });
+            toast.success('Thank you for reaching out! We will get back to you shortly.'); // Success notification
         } catch (error) {
             console.error('Error submitting the form', error);
+            toast.error('Failed to send your message. Please try again later.'); // Error notification
         }
     };
 
     return (
-        <div>
-            <h2 className="text-center">Contact Us</h2>
-            <div className="jumbotron bg-light text-dark text-center">
-                <p>If you have any questions or need assistance, please fill out the form below.</p>
-            </div>
+        <div className='contact'>
             <form className="contact-container" onSubmit={handleSubmit}>
+                <h2 className="text-center">Contact Us</h2>
+                <div className="jumbotron bg-light text-dark text-center">
+                    <p>If you have any questions or need assistance, please fill out the form below.</p>
+                </div>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" className="form-control" id="name" placeholder="Enter your name" onChange={handleChange} value={formData.name} />
@@ -45,6 +49,8 @@ const Contact = () => {
                 </div>
                 <button type="submit" className="btn btn-dark">Submit</button>
             </form>
+            {/* Change autoClose from 3000 to 10000 (10 seconds) */}
+            <ToastContainer position="top-right" autoClose={10000} hideProgressBar closeOnClick pauseOnHover draggable />
         </div>
     );
 };

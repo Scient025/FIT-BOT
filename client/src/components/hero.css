@@ -1,0 +1,110 @@
+.hero {
+    display: flex;
+    justify-content: space-between;
+    background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain); /* Adjust the path as necessary */
+}
+
+.left-h {
+    padding: 2rem;
+    padding-top: 5rem;
+    flex: 3;
+}
+
+.right-h {
+    flex: 1;
+    position: relative;
+    background-color: var(--orange);
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-transform: uppercase;
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: white;
+    text-overflow: inherit;
+}
+
+.hero-text>div:nth-of-type(3) {
+    font-size: 1rem;
+    font-weight: 200;
+    text-transform: none;
+    letter-spacing: 1px;
+    width: 80%;
+}
+
+.hero-buttons {
+    padding-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    font-weight: normal;
+}
+
+.hero-buttons > :nth-child(1),
+.hero-buttons > :nth-child(2) {
+    color: white;
+    background-color: var(--orange);
+    width: 8rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-buttons > :nth-child(1):hover,
+.hero-buttons > :nth-child(2):hover {
+    background-color: #d17a0c; /* Darker shade of orange */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.right-h>.btn {
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    color: black;
+}
+
+.heart-rate {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--darkGrey);
+    width: fit-content;
+    padding: 1rem;
+    align-items: start;
+    border-radius: 5px;
+    position: absolute;
+    right: 4rem;
+    top: 1rem;
+}
+
+.heart-rate>img {
+    width: 2rem;
+}
+
+.heart-rate>:nth-child(2) {
+    color: var(--gray);
+}
+
+.heart-rate>:nth-child(3) {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.hero-image {
+    top: 1rem;
+    position: absolute;
+    right: 9rem;
+    width: 23rem;
+}
+
+.hero-image-back {
+    position: absolute;
+    right: 23rem;
+    bottom: 7rem;
+    z-index: -1;
+}

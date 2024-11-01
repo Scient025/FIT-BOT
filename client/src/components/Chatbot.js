@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import './Chatbot.css'; // Import the new CSS file
+import './Chatbot.css';
 
 function Chatbot() {
   const [question, setQuestion] = useState("");
@@ -12,21 +12,25 @@ function Chatbot() {
     setGeneratingAnswer(true);
     e.preventDefault();
     setAnswer("Loading your answer... \n It might take up to 10 seconds");
+
     try {
+      const token = localStorage.getItem("authToken");
+
       const response = await axios({
-        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAedtuR6oAGNXf80eeZSWeAziOzBS1V4nw`,
+        url: `${process.env.REACT_APP_SERVER_URL}/api/chatbot/sendMessage`,
         method: "post",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         data: {
-          contents: [{ parts: [{ text: question }] }],
+          message: question,
         },
       });
 
-      setAnswer(
-        response["data"]["candidates"][0]["content"]["parts"][0]["text"]
-      );
+      setAnswer(response.data.reply);
     } catch (error) {
-      console.log(error);
-      setAnswer("Sorry - Something went wrong. Please try again!");
+      console.error(error);
+      setAnswer("Sorry, something went wrong. Please try again!");
     }
 
     setGeneratingAnswer(false);
@@ -39,11 +43,9 @@ function Chatbot() {
           onSubmit={generateAnswer}
           className="text-center rounded-lg shadow-lg py-6 px-4 transition-all duration-500 transform hover:scale-105"
         >
-          <a>
-            <h1 className="text-4xl font-bold text-blue-500 mb-4 animate-bounce">
-              Fitness Chatbot
-            </h1>
-          </a>
+          <h1 className="text-4xl font-bold text-blue-500 mb-4 animate-bounce">
+            Fitness Chatbot
+          </h1>
           <textarea
             required
             className="border border-gray-300 rounded w-full my-2 min-h-fit p-3 transition-all duration-300 focus:border-blue-400 focus:shadow-lg"
@@ -53,9 +55,8 @@ function Chatbot() {
           ></textarea>
           <button
             type="submit"
-            className={`bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition-all duration-300 ${
-              generatingAnswer ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition-all duration-300 ${generatingAnswer ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             disabled={generatingAnswer}
           >
             Generate answer

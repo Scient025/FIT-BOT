@@ -68,7 +68,7 @@ const ForearmsPage = () => {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:5000/api/fitness/forearms', workoutInput);
+            const response = await axios.post('http://localhost:5000/api/fitness/forarms', workoutInput);
             console.log('Server response:', response.data);
             alert('Forearms workout saved successfully!');
             setWorkoutInput({ exercise: '', weight: '', sets: '', reps: '', caloriesBurned: '' });

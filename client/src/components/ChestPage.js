@@ -68,7 +68,7 @@ const ChestPage = () => {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:5000/api/fitness/chest', workoutInput);
+            const response = await axios.post('http://localhost:5000/api/fitness/chests', workoutInput);
             console.log('Server response:', response.data);
             alert('Chest workout saved successfully!');
             setWorkoutInput({ exercise: '', weight: '', sets: '', reps: '', caloriesBurned: '' });

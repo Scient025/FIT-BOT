@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@splinetool/react-spline": "^4.0.0",
-    "react-toastify": "^10.0.6"
-  }
-}

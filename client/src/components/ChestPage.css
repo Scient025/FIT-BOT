@@ -1,0 +1,62 @@
+.ChestPage {
+    background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain); 
+    padding: 2rem 0;      
+}
+
+.ChestPage h1 {
+    font-size: 3rem; /* Increased font size */
+    font-weight: bold;
+    color: var(--orange); /* Use the orange color from your previous theme */
+    text-align: center; /* Centers the title */
+    margin-bottom: 1rem; /* Adds a bit of spacing below the title */
+}
+  
+.ChestPage__form-container {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+.ChestPage__form h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+  
+.ChestPage__form .form-group {
+    margin-bottom: 1.75rem;
+  }
+  
+.ChestPage__form .form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--orange);
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+.ChestPage__form button[type="submit"] {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 2rem;
+    background-color: var(--orange);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+.ChestPage__form button[type="submit"]:hover {
+    background-color: var(--darkGrey);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  

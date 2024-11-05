@@ -14,6 +14,7 @@ import chestWorkoutRoutes from './routes/chestWorkout.js';
 import tricepsWorkoutRoutes from './routes/tricepsWorkout.js';
 import shoulderWorkoutRoutes from './routes/shoulderWorkout.js';
 import forearmWorkoutRoutes from './routes/forearmWorkout.js';
+import communityRoutes from './routes/CommunityRoute.js'
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ app.use('/api/fitness', chestWorkoutRoutes);
 app.use('/api/fitness', tricepsWorkoutRoutes);
 app.use('/api/fitness', shoulderWorkoutRoutes);
 app.use('/api/fitness', forearmWorkoutRoutes);
+app.use('/api/community', communityRoutes)
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 

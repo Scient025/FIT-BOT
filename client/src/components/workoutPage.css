@@ -1,4 +1,3 @@
-/* General Layout for Workout Page */
 .workout {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -30,7 +29,6 @@
     flex-direction: row-reverse;
 }
 
-/* Image Styling */
 .workout__exercise__image img {
     max-width: 100%;
     height: auto;
@@ -38,7 +36,6 @@
     border-radius: 8px;
 }
 
-/* Content Styling */
 .workout__exercise__content {
     display: flex;
     flex-direction: column;

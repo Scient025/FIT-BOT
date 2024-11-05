@@ -7,7 +7,7 @@ import './Community.css';
 const Community = () => {
     const [posts, setPosts] = useState([]);
     const [formData, setFormData] = useState({ title: '', content: '', username: '' });
-    const [commentData, setCommentData] = useState({ username: '', comment: '' }); // State for comments
+    const [commentData, setCommentData] = useState({ username: '', comment: '' });
 
     const fetchPosts = async () => {
         try {
@@ -27,7 +27,7 @@ const Community = () => {
     };
 
     const handleCommentChange = (e) => {
-        setCommentData({ ...commentData, [e.target.id]: e.target.value }); // Update comment data
+        setCommentData({ ...commentData, [e.target.id]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
@@ -47,7 +47,6 @@ const Community = () => {
         }
     };
 
-    // Handle comment submission
     const handleCommentSubmit = async (postId) => {
         if (!commentData.username || !commentData.comment) {
             alert('Please fill out all fields.');
@@ -55,8 +54,8 @@ const Community = () => {
         }
         try {
             await axios.post(`http://localhost:5000/api/community/${postId}/comment`, commentData);
-            fetchPosts(); // Refresh posts to show new comment
-            setCommentData({ username: '', comment: '' }); // Clear comment fields
+            fetchPosts();
+            setCommentData({ username: '', comment: '' });
             toast.success('Comment added successfully!');
         } catch (error) {
             console.error('Error adding comment', error);

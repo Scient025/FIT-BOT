@@ -1,9 +1,8 @@
 import express from 'express';
-import Community from '../models/CommunityPage.js'; // Make sure this path is correct
+import Community from '../models/CommunityPage.js';
 
 const router = express.Router();
 
-// Create a new community post
 router.post('/', async (req, res) => {
     const { title, content, username } = req.body;
     const newPost = new Community({ title, content, username });
@@ -16,7 +15,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get all community posts
 router.get('/', async (req, res) => {
     try {
         const posts = await Community.find();
@@ -28,16 +26,16 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/:id/comment', async (req, res) => {
-    const { username, comment } = req.body; // Destructure username and comment from request body
+    const { username, comment } = req.body;
     try {
         const updatedPost = await Community.findByIdAndUpdate(
             req.params.id,
             { $push: { comments: { username, comment } } },
             { new: true }
         );
-        res.status(200).json(updatedPost); // Return the updated post
+        res.status(200).json(updatedPost);
     } catch (err) {
-        res.status(500).json({ error: 'Error adding comment' }); // Error response
+        res.status(500).json({ error: 'Error adding comment' });
     }
 });
 

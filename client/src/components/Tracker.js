@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Tracker.css'; // Assuming you have some CSS for styling
+import './Tracker.css';
 
 const Tracker = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -15,7 +15,6 @@ const Tracker = () => {
 
     const navigate = useNavigate();
 
-    // Sample workout data (hardcoded or fetched from an API)
     const getWorkouts = async () => {
         const data = [
             { type: 'Chest', imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80' },
@@ -43,12 +42,11 @@ const Tracker = () => {
     };
 
     const navigateToWorkout = (type) => {
-        navigate(`/workout/${type.toLowerCase()}`); // Navigates to the corresponding workout page
+        navigate(`/workout/${type.toLowerCase()}`); 
     };
 
     return (
         <div className="tracker-page">
-            {/* Search Bar */}
             <div className="search-bar">
                 <input
                     type="text"
@@ -59,7 +57,6 @@ const Tracker = () => {
                 />
             </div>
 
-            {/* Workout Cards */}
             <h1 className="main-heading">Workouts</h1>
             <div className="workouts-container">
                 {workouts && workouts

@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
@@ -88,7 +87,7 @@ const App = () => {
                 {/* Redirect root to login/signup */}
                 <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
 
-                {/* Private routes (only accessible when logged in) */}
+                {/* Private routes(only accessible when logged in) */}
                 <Route path="/home" element={isAuthenticated ? (
                     <>
                         <Home />

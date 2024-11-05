@@ -8,7 +8,6 @@ dotenv.config();
 
 const router = express.Router();
 
-// Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1]; 
     if (!token) {
@@ -26,12 +25,10 @@ const verifyToken = (req, res, next) => {
     }
 };
 
-// Chatbot API interaction and storing chat history
 router.post('/sendMessage', verifyToken, async (req, res) => {
     const { message } = req.body;
 
     try {
-        // Gemini API call
         const response = await fetch(process.env.REACT_APP_API_URL, {
             method: 'POST',
             headers: {
@@ -45,7 +42,6 @@ router.post('/sendMessage', verifyToken, async (req, res) => {
         const data = await response.json();
         const botResponse = data.candidates[0].content.parts[0].text;
 
-        // Save the conversation in MongoDB
         const newMessage = new Message({
             userMessage: message,
             botMessage: botResponse,
@@ -54,7 +50,6 @@ router.post('/sendMessage', verifyToken, async (req, res) => {
 
         await newMessage.save();
 
-        // Respond to the frontend
         res.json({ reply: botResponse });
     } catch (error) {
         console.error('Error with chatbot:', error);

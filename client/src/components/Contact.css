@@ -1,7 +1,7 @@
 .contact {
   background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain); 
   padding: 2rem 0;
-  background-size: cover; /* Ensures background image covers the entire area */
+  background-size: cover;
   background-position: center;
 }
 
@@ -78,7 +78,6 @@ button[type="submit"]:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Style adjustments for Toastify notifications */
 .Toastify__toast-container {
   width: auto;
   padding: 0;

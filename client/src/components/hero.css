@@ -1,7 +1,7 @@
 .hero {
     display: flex;
     justify-content: space-between;
-    background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain); /* Adjust the path as necessary */
+    background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain);
 }
 
 .left-h {
@@ -57,8 +57,8 @@
 
 .hero-buttons > :nth-child(1):hover,
 .hero-buttons > :nth-child(2):hover {
-    background-color: #d17a0c; /* Darker shade of orange */
-    transform: scale(1.05); /* Slight scaling effect on hover */
+    background-color: #d17a0c; 
+    transform: scale(1.05);
 }
 
 .right-h>.btn {

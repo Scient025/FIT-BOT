@@ -32,4 +32,5 @@ router.post('/', async (req, res) => {
 
 export default router;
 
+//generated a random 32-byte hex string to encrypt the password:
 //node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"

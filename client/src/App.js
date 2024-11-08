@@ -12,7 +12,8 @@ import Community from './components/Community';
 import Chatbot from './components/Chatbot';
 import SignUp from './components/signUp';
 import Login from './components/Login';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import AccessDenied from './components/AccessDenied';
 import BackPage from './components/BackPage';
 import LegsPage from './components/LegsPage';
 import ChestPage from './components/ChestPage';
@@ -87,7 +88,7 @@ const App = () => {
                 {/* Redirect root to login/signup */}
                 <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
 
-                {/* Private routes(only accessible when logged in) */}
+                {/* Private routes (only accessible when logged in) */}
                 <Route path="/home" element={isAuthenticated ? (
                     <>
                         <Home />
@@ -95,9 +96,11 @@ const App = () => {
                         <Programs />
                     </>
                 ) : (
-                    <Navigate to="/home" />
+                    <AccessDenied />
                 )} />
-                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <Navigate to="/tracker" />} />
+                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <AccessDenied />} />
+                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <AccessDenied />} />
+                <Route path="/community" element={isAuthenticated ? <Community /> : <AccessDenied />} />
 
                 {/* Workout-specific routes */}
                 <Route path="/workout/back" element={<BackPage />} />
@@ -108,9 +111,6 @@ const App = () => {
                 <Route path="/workout/triceps" element={<TricepsPage />} />
                 <Route path="/workout/biceps" element={<BicepsPage />} />
                 <Route path="/workout/forearms" element={<ForearmsPage />} />
-
-                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/chatbot" />} />
-                <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/community" />} />
             </Routes>
             <Footer />
         </>

@@ -1,37 +1,101 @@
-.tracker-page {
-  background-image: url("https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain");
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  color: #fff;
+.tracker {
+  background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain); 
+  padding: 2rem 0;
 }
 
-.main-heading {
+.tracker-container {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.5rem;
-  color: #fff; /* White color for better contrast */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.tracker-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 1rem;
 }
 
 .search-bar {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .search-input {
-  width: 300px;
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 25px;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--orange);
+  border-radius: 4px;
   font-size: 1rem;
-  outline: none;
-  transition: border-color 0.3s ease;
-  background: rgba(255, 255, 255, 0.9);
+  color: #333;
 }
 
-.search-input:focus {
-  border-color: #000;
+.food-info {
+  margin-top: 2rem;
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-form label {
+  display: block;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.food-form input,
+.food-form select {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--orange);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+button {
+  display: block;
+  margin: 1.5rem auto 0; /* This centers the button horizontally */
+  padding: 0.75rem 2rem;
+  background-color: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center; /* Ensures the text inside the button is centered */
+}
+
+button:hover {
+  background-color: var(--orange);
+}
+
+.logged-foods-container {
+  margin-top: 2rem;
+}
+
+.logged-foods-list {
+  list-style: none;
+  padding: 0;
+}
+
+.logged-foods-list li {
+  margin: 1rem 0;
+}
+
+.meal-type {
+  font-style: italic;
+  color: #777;
+}
+
+.logged-date {
+  color: #777;
 }
 
 .workouts-container {
@@ -82,56 +146,11 @@
   color: #000;
 }
 
-/* Nutrition Tracker */
-.nutrition-tracker {
-  max-width: 600px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Nutrition Item */
-.nutrition-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.nutrition-input {
-  flex-grow: 1;
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.nutrition-input:focus {
-  border-color: #666;
-}
-
-/* Nutrition Data */
-.nutrition-data {
-  margin-left: 15px;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-/* Add Food Button */
-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
+.main-heading {
+  padding-top: 2rem;
+  text-align: center; /* Centers the text horizontally */
+  font-size: 2.5rem; /* Adjust the font size as needed */
+  font-weight: bold;
+  color: var(--orange);
+  margin: 0 auto 2rem; /* Ensures margin for spacing below */
 }

@@ -20,6 +20,7 @@ router.post('/nutrition', async (req, res) => {
         const nutritionData = responses.map(response => response.data);
         res.status(200).json({ nutritionData });
     } catch (error) {
+        console.error('Error fetching caloric data:', error); // Log the error for debugging
         res.status(500).json({ message: 'Error fetching caloric data', error });
     }
 });

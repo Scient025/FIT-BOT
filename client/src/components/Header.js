@@ -38,6 +38,9 @@ const Header = ({ isAuthenticated, handleLogout }) => {
                 <li className="nav-item" onClick={() => handleLinkClick('/community')}>
                   <span className="nav-link">Community</span>
                 </li>
+                <li className="nav-item" onClick={() => handleLinkClick('/recommender')}>
+                  <span className="nav-link">Recommender</span>
+                </li>
                 <li className="nav-item" onClick={() => handleLinkClick('/contact')}>
                   <span className="nav-link">Contact</span>
                 </li>

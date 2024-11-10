@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './Tracker.css';
 
 const Tracker = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [workouts, setWorkouts] = useState(null);
-    const [exerciseInput, setExerciseInput] = useState({
-        type: '',
-        weight: '',
-        sets: '',
-        reps: '',
-        caloriesBurned: '',
-    });
-    const [foodItems, setFoodItems] = useState([{ name: '', nutrition: null }]); // Array of objects
+    const [foodData, setFoodData] = useState(null); // Store data for the first food item
+    const [loggedFoods, setLoggedFoods] = useState([]);
+    const [workouts, setWorkouts] = useState([]);
+    const [mealType, setMealType] = useState(''); // Meal type (breakfast, lunch, dinner)
+
     const navigate = useNavigate();
 
+    // Fetch workouts data
     const getWorkouts = async () => {
         const data = [
             { type: 'Chest', imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80' },
@@ -31,36 +27,42 @@ const Tracker = () => {
     };
 
     useEffect(() => {
-        getWorkouts();
+        getWorkouts(); // Call the function to set workouts
     }, []);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setExerciseInput({
-            ...exerciseInput,
-            [name]: value,
-        });
-    };
-
-    const handleFoodItemChange = async (index, value) => {
-        const updatedItems = [...foodItems];
-        updatedItems[index].name = value;
-        setFoodItems(updatedItems);
-
-        if (value) {
-            try {
-                const response = await axios.post('http://localhost:5000/api/nutrition', { foodItems: [value] });
-                const nutrition = response.data.nutritionData[0];
-                updatedItems[index].nutrition = nutrition;
-                setFoodItems(updatedItems);
-            } catch (error) {
-                console.error('Error fetching nutrition data:', error);
+    // Fetch nutritional data from USDA API based on search query
+    const searchFood = useCallback(async () => {
+        if (searchQuery.length > 2) {
+            const apiKey = "aNmY3LuepB3gIsOUpfIc1zwKux3USHO0cI7DM3WU"; // Replace with your actual USDA API key
+            const response = await fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchQuery}&api_key=${apiKey}`);
+            const data = await response.json();
+            if (data.foods && data.foods.length > 0) {
+                const firstFood = data.foods[0];
+                setFoodData({
+                    description: firstFood.description,
+                    calories: firstFood.foodNutrients.find(n => n.nutrientName === 'Energy')?.value || 0,
+                    protein: firstFood.foodNutrients.find(n => n.nutrientName === 'Protein')?.value || 0,
+                    fat: firstFood.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0,
+                });
+            } else {
+                setFoodData(null); // Clear data if no foods found
             }
         }
-    };
+    }, [searchQuery]);
 
-    const handleAddFoodItem = () => {
-        setFoodItems([...foodItems, { name: '', nutrition: null }]);
+    useEffect(() => {
+        if (searchQuery) searchFood();
+    }, [searchQuery, searchFood]);
+
+    // Log the selected food item with meal type and date
+    const logFood = () => {
+        if (foodData && mealType) {
+            const currentDate = new Date().toLocaleDateString();
+            const foodWithDate = { ...foodData, loggedDate: currentDate, mealType };
+            setLoggedFoods([...loggedFoods, foodWithDate]);
+            setFoodData(null); // Clear data after logging
+            setMealType(''); // Clear meal type selection
+        }
     };
 
     const navigateToWorkout = (type) => {
@@ -69,58 +71,75 @@ const Tracker = () => {
 
     return (
         <div className="tracker-page">
+            {/* Search Bar for Food Tracking */}
             <div className="search-bar">
                 <input
                     type="text"
                     className="search-input"
-                    placeholder="Search workouts..."
+                    placeholder="Search food..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
             </div>
 
+            {/* Display Nutritional Information Form for the First Search Result */}
+            {foodData && (
+                <div className="food-info">
+                    <h2>{foodData.description}</h2>
+                    <form className="food-form">
+                        <label>
+                            Calories:
+                            <input type="text" value={`${foodData.calories} kcal`} readOnly />
+                        </label>
+                        <label>
+                            Protein:
+                            <input type="text" value={`${foodData.protein} g`} readOnly />
+                        </label>
+                        <label>
+                            Fat:
+                            <input type="text" value={`${foodData.fat} g`} readOnly />
+                        </label>
+                        <label>
+                            Meal Type:
+                            <select value={mealType} onChange={(e) => setMealType(e.target.value)}>
+                                <option value="">Select Meal</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                            </select>
+                        </label>
+                        <button type="button" onClick={logFood} disabled={!mealType}>Log This Food</button>
+                    </form>
+                </div>
+            )}
+
+            {/* Logged Foods */}
+            <h2>Logged Foods</h2>
+            <ul>
+                {loggedFoods.map((food, index) => (
+                    <li key={index}>
+                        {food.description}: {food.calories} kcal, {food.protein}g protein, {food.fat}g fat 
+                        (Logged on: {food.loggedDate}, Meal: {food.mealType})
+                    </li>
+                ))}
+            </ul>
+
+            {/* Workout Cards */}
             <h1 className="main-heading">Workouts</h1>
             <div className="workouts-container">
-                {workouts && workouts
-                    .filter((item) => item.type.toLowerCase().includes(searchQuery.toLowerCase()))
-                    .map((item) => (
+                {workouts.map((item, index) => (
+                    <div
+                        className="workout-card"
+                        key={index}
+                        onClick={() => navigateToWorkout(item.type)}
+                    >
                         <div
-                            className="workout-card"
-                            key={item.type}
-                            onClick={() => navigateToWorkout(item.type)}
-                        >
-                            <div
-                                className="workout-card-image"
-                                style={{ backgroundImage: `url(${item.imageUrl})` }}
-                            ></div>
-                            <h2 className="workout-card-title">{item.type}</h2>
-                        </div>
-                    ))}
-            </div>
-
-            {/* Nutrition Tracker */}
-            <h1 className="main-heading">Nutrition Tracker</h1>
-            <div className="nutrition-tracker">
-                {foodItems.map((item, index) => (
-                    <div key={index} className="nutrition-item">
-                        <input
-                            type="text"
-                            value={item.name}
-                            onChange={(e) => handleFoodItemChange(index, e.target.value)}
-                            placeholder="Enter food item"
-                            className="nutrition-input"
-                        />
-                        {item.nutrition && (
-                            <div className="nutrition-data">
-                                <p>Calories: {item.nutrition.calories}</p>
-                                <p>Protein: {item.nutrition.protein}g</p>
-                                <p>Fat: {item.nutrition.fat}g</p>
-                                <p>Carbs: {item.nutrition.carbs}g</p>
-                            </div>
-                        )}
+                            className="workout-card-image"
+                            style={{ backgroundImage: `url(${item.imageUrl})` }}
+                        ></div>
+                        <h2 className="workout-card-title">{item.type}</h2>
                     </div>
                 ))}
-                <button onClick={handleAddFoodItem}>Add Food Item</button>
             </div>
         </div>
     );

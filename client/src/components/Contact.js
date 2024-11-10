@@ -1,4 +1,3 @@
-// src/components/Contact.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,10 +20,10 @@ const Contact = () => {
         try {
             await axios.post('http://localhost:5000/api/fitness/contact', formData);
             setFormData({ name: '', email: '', message: '' });
-            toast.success('Thank you for reaching out! We will get back to you shortly.'); // Success notification
+            toast.success('Thank you for reaching out! We will get back to you shortly.');
         } catch (error) {
             console.error('Error submitting the form', error);
-            toast.error('Failed to send your message. Please try again later.'); // Error notification
+            toast.error('Failed to send your message. Please try again later.');
         }
     };
 

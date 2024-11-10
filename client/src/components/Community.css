@@ -20,8 +20,11 @@
   margin-bottom: 1rem;
 }
 
-.posts-list {
-  margin-top: 2rem;
+.posts-list h2 {
+  color: white;
+  font-size: 2rem; 
+  font-weight: bold; 
+  text-align: center; 
 }
 
 .post {
@@ -35,9 +38,9 @@
 }
 
 .posts-list {
-  display: flex; /* Enables flexbox layout */
-  flex-direction: column; /* Stacks posts vertically */
-  align-items: center; /* Centers children horizontally */
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
   margin-top: 2rem;
 }
 
@@ -83,7 +86,7 @@
 }
 
 .comment-form textarea {
-  height: 100px; /* Adjust height as needed */
+  height: 100px; 
   resize: vertical;
   line-height: 1.5;
 }
@@ -106,7 +109,6 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Style adjustments for Toastify notifications */
 .Toastify__toast-container {
   width: auto;
   padding: 0;

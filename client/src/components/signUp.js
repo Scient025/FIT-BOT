@@ -24,7 +24,7 @@ function Signup({ setIsAuthenticated, onSignUp }) {
             if (token) {
                 localStorage.setItem('authToken', token);
                 setIsAuthenticated(true);
-                onSignUp(); // Trigger notification
+                onSignUp(); 
                 navigate('/home');
             } else {
                 setErrorMessage('Registration failed. Please try again.');

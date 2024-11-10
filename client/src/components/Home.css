@@ -1,4 +1,3 @@
-/* General Reset and Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -10,38 +9,36 @@ body, html {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: black; /* Background across the entire page */
+  background-color: black;
 }
 
-/* Navbar Styling */
 .navbar {
-  background-color: black; /* Dark background for the navbar */
+  background-color: black;
 }
 
 .navbar-brand {
-  color: white !important; /* White text for the brand */
-  font-size: 1.5rem; /* Adjust the size of the brand text */
+  color: white !important; 
+  font-size: 1.5rem; 
 }
 
 .navbar-nav .nav-link {
-  color: white !important; /* White text for navbar links */
-  margin-left: 10px; /* Spacing between links */
+  color: white !important; 
+  margin-left: 10px;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #bbb !important; /* Slightly lighter color on hover */
+  color: #bbb !important; 
 }
 
 .navbar-nav .btn-link {
-  color: white !important; /* White for the Logout button */
+  color: white !important;
   text-decoration: none;
 }
 
 .navbar-nav .btn-link:hover {
-  color: #bbb !important; /* Lighter color on hover for Logout */
+  color: #bbb !important; 
 }
 
-/* Ensure Full Height on the Home Page */
 .home-page {
   background-color: black;
   color: white;
@@ -49,7 +46,6 @@ body, html {
   width: 100%;
 }
 
-/* Headings and Paragraphs in Home Page */
 .home-page h1, 
 .home-page h3, 
 .home-page h4, 
@@ -57,7 +53,6 @@ body, html {
   color: white;
 }
 
-/* Card/Box Styling */
 .home-page .shadow-sm {
   background-color: #333;
   color: white;
@@ -71,7 +66,6 @@ body, html {
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
 }
 
-/* Hero Section */
 .hero-section {
   display: flex;
   align-items: center;
@@ -82,26 +76,22 @@ body, html {
   margin-top: 20px;
 }
 
-/* Hero Image */
 .hero-image img {
   width: 75%;
   border-radius: 10px;
   object-fit: cover;
 }
 
-/* Hero Content */
 .hero-content {
   text-align: center;
 }
 
-/* Headline Text */
 .hero-content h1 {
   color: white;
   font-size: 3rem;
   margin-bottom: 20px;
 }
 
-/* Call-to-Action Buttons */
 .cta-buttons {
   display: flex;
   gap: 20px;
@@ -123,7 +113,6 @@ body, html {
   color: white;
 }
 
-/* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
   .hero-section {
     flex-direction: column;

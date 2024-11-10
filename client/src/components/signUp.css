@@ -1,101 +1,99 @@
-/* signUp.css */
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5; /* Soft gray background for the entire page */
-    color: #333; /* Dark gray text for good readability */
+    background-color: #f0f2f5; 
+    color: #333; 
 }
 
 .signup-container {
     display: flex;
-    align-items: center; /* Center items vertically */
-    height: 100vh; /* Full viewport height */
-    position: relative; /* Position relative for absolute positioning of Spline */
+    align-items: center; 
+    height: 100vh; 
+    position: relative;
 }
 
 .signup-form {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 1.5rem;
-    border-radius: 0.25rem; /* Rounded corners */
-    width: 25%; /* Set width for the form */
-    margin: 0 5% 0 20px; /* Add margin to the right and left */
-    z-index: 1; /* Ensure form is above the Spline */
+    border-radius: 0.25rem; 
+    width: 25%; 
+    margin: 0 5% 0 20px; 
+    z-index: 1; 
 }
 
 .spline-background {
-    flex: 1; /* Allow Spline to take the remaining space */
-    height: 100%; /* Full height to match the container */
-    z-index: 0; /* Spline is the background */
-    position: absolute; /* Position absolute to fill the container */
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
+    flex: 1; 
+    height: 100%; 
+    z-index: 0; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 1.5rem; /* Space below heading */
-    color: #333; /* Dark gray for heading */
+    margin-bottom: 1.5rem; 
+    color: #333;
 }
 
 .mb-3 {
-    margin-bottom: 1rem; /* Space below each input group */
+    margin-bottom: 1rem; 
 }
 
 label {
     display: block;
-    margin-bottom: 0.5rem; /* Space below label */
+    margin-bottom: 0.5rem; 
     font-weight: bold;
-    color: #555; /* Slightly lighter gray for labels */
+    color: #555; 
 }
 
 input.form-control {
-    border: 1px solid #ced4da; /* Light border */
-    border-radius: 0.25rem; /* Rounded corners */
-    padding: 0.5rem; /* Padding inside input */
-    width: 100%; /* Full width */
-    background-color: #f8f9fa; /* Light gray background for input */
-    color: #333; /* Dark text for input */
-    transition: border-color 0.2s; /* Smooth border transition */
+    border: 1px solid #ced4da; 
+    border-radius: 0.25rem; 
+    padding: 0.5rem;
+    width: 100%; 
+    background-color: #f8f9fa; 
+    color: #333; 
+    transition: border-color 0.2s;
 }
 
 input.form-control:focus {
-    border-color: #007bff; /* Blue border on focus */
-    outline: none; /* Remove outline */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Shadow on focus */
+    border-color: #007bff;
+    outline: none; 
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
 }
 
 .btn {
-    padding: 0.5rem; /* Padding for buttons */
-    font-size: 1rem; /* Font size */
+    padding: 0.5rem;
+    font-size: 1rem; 
 }
 
 .btn-success {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-    border: none; /* Remove border */
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
 }
 
 .btn-default {
-    background-color: #e9ecef; /* Light gray background */
-    color: #495057; /* Dark gray text */
-    border: none; /* Remove border */
+    background-color: #e9ecef; 
+    color: #495057; 
+    border: none; 
 }
 
 .btn-success:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838;
 }
 
 .btn-default:hover {
-    background-color: #d6d8db; /* Darker gray on hover */
+    background-color: #d6d8db; 
 }
 
 p {
-    text-align: center; /* Center text */
-    margin: 1rem 0; /* Space above and below */
-    color: #666; /* Medium gray for paragraph text */
+    text-align: center; 
+    margin: 1rem 0; 
+    color: #666; 
 }
 
 .text-decoration-none {
-    text-decoration: none; /* Remove underline from links/buttons */
+    text-decoration: none; 
 }

@@ -1,6 +1,6 @@
 .chatbot {
     background-image: url(https://th.bing.com/th/id/OIP.5AXftUj30hklRJw4niYBxQHaEw?rs=1&pid=ImgDetMain);
-    padding: 2rem 0; /* Padding for the background */
+    padding: 2rem 0; 
   }
   
   .chatbot-container {
@@ -9,31 +9,31 @@
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     max-width: 600px;
-    margin: 2rem auto; /* Margin for spacing from header and footer */
-    text-align: center; /* Centering text inside the container */
+    margin: 2rem auto; 
+    text-align: center; 
   }
   
   .chatbot-container h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: black; /* Bootstrap primary color */
+    color: black; 
     margin-bottom: 1rem;
   }
   
   .chatbot-container textarea {
     width: 100%;
     padding: 1rem;
-    border: 1px solid var(--orange); /* Use your orange variable */
+    border: 1px solid var(--orange); 
     border-radius: 4px;
     font-size: 1rem;
-    margin: 1rem 0; /* Margin for spacing */
+    margin: 1rem 0; 
   }
   
   .chatbot-container button[type="submit"] {
     display: block;
     margin: 0.5rem auto 0;
     padding: 0.75rem 2rem;
-    background-color: var(--orange); /* Use your orange variable */
+    background-color: var(--orange); 
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -44,22 +44,22 @@
   }
   
   .chatbot-container button[type="submit"]:hover {
-    background-color: var(--darkGrey); /* Use your dark grey variable */
+    background-color: var(--darkGrey); 
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
   
   .chatbot-answer {
-    background-color: #f8f9fa; /* Light grey background for the answer area */
+    background-color: #f8f9fa; 
     color: #333333;
     padding: 1.5rem;
     border-radius: 8px;
-    margin-top: 1.5rem; /* Space above the answer area */
+    margin-top: 1.5rem; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease; /* Smooth hover effect */
+    transition: transform 0.3s ease; 
   }
   
   .chatbot-answer:hover {
-    transform: scale(1.02); /* Slight zoom on hover */
+    transform: scale(1.02); 
   }
   

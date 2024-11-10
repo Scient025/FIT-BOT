@@ -10,7 +10,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router> {/* Wrap the App component inside Router */}
+    <Router>
       <App />
     </Router>
   </React.StrictMode>

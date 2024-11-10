@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
@@ -13,7 +12,8 @@ import Community from './components/Community';
 import Chatbot from './components/Chatbot';
 import SignUp from './components/signUp';
 import Login from './components/Login';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import AccessDenied from './components/AccessDenied';
 import BackPage from './components/BackPage';
 import LegsPage from './components/LegsPage';
 import ChestPage from './components/ChestPage';
@@ -23,6 +23,7 @@ import TricepsPage from './components/TricepsPage';
 import BicepsPage from './components/BicepsPage';
 import ForearmsPage from './components/ForearmsPage';
 import Notification from './components/Notification';
+import Recommender from './components/Recommender';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -80,15 +81,16 @@ const App = () => {
             )}
 
             <Routes>
-                {/* Public routes */}
+                {/*public routes*/}
                 <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} onLogin={handleLogin} />} />
                 <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} onSignUp={handleSignup} />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/recommender" element={<Recommender />} />
 
-                {/* Redirect root to login/signup */}
+                {/*redirect root to login/signup*/}
                 <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
 
-                {/* Private routes (only accessible when logged in) */}
+                {/*private routes*/}
                 <Route path="/home" element={isAuthenticated ? (
                     <>
                         <Home />
@@ -96,11 +98,12 @@ const App = () => {
                         <Programs />
                     </>
                 ) : (
-                    <Navigate to="/home" />
+                    <AccessDenied />
                 )} />
-                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <Navigate to="/tracker" />} />
+                <Route path="/tracker" element={isAuthenticated ? <Tracker /> : <AccessDenied />} />
+                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <AccessDenied />} />
+                <Route path="/community" element={isAuthenticated ? <Community /> : <AccessDenied />} />
 
-                {/* Workout-specific routes */}
                 <Route path="/workout/back" element={<BackPage />} />
                 <Route path="/workout/legs" element={<LegsPage />} />
                 <Route path="/workout/chest" element={<ChestPage />} />
@@ -109,9 +112,6 @@ const App = () => {
                 <Route path="/workout/triceps" element={<TricepsPage />} />
                 <Route path="/workout/biceps" element={<BicepsPage />} />
                 <Route path="/workout/forearms" element={<ForearmsPage />} />
-
-                <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <Navigate to="/chatbot" />} />
-                <Route path="/community" element={isAuthenticated ? <Community /> : <Navigate to="/community" />} />
             </Routes>
             <Footer />
         </>

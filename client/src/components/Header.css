@@ -1,4 +1,3 @@
-/* Header.css */
 .header {
     display: flex;
     justify-content: space-between;
@@ -21,9 +20,9 @@
 }
 
 .header-title {
-    color: white; /* Set the title text color to white */
-    font-size: 2rem; /* Increase the font size of the title */
-    text-decoration: none; /* Remove underline from the title link */
+    color: white; 
+    font-size: 2rem; 
+    text-decoration: none; 
 }
 
 .nav-link.logout-btn {
@@ -50,24 +49,24 @@
 .navbar-collapse.show {
     display: flex !important;
     flex-direction: column;
-    align-items: center; /* Center items in the dropdown */
+    align-items: center;
 }
 
 .nav-item {
-    width: auto; /* Change width to auto to prevent wrapping */
-    text-align: center; /* Center text */
-    cursor: pointer; /* Change cursor to pointer */
+    width: auto; 
+    text-align: center; 
+    cursor: pointer; 
 }
 
 .nav-link {
-    color: white; /* Default text color */
-    text-decoration: none; /* Remove underline */
-    display: block; /* Make the link fill the nav-item */
-    padding: 10px 0; /* Vertical padding */
-    white-space: nowrap; /* Prevent text from wrapping */
+    color: white;
+    text-decoration: none; 
+    display: block; 
+    padding: 10px 0; 
+    white-space: nowrap; 
 }
 
 .nav-link:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: var(--orange); /* Change text color on hover */
+    text-decoration: underline; 
+    color: var(--orange);
 }

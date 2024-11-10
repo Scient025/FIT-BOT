@@ -19,7 +19,7 @@ function Login({ setIsAuthenticated, onLogin }) {
             if (token) {
                 localStorage.setItem('authToken', token);
                 setIsAuthenticated(true);
-                onLogin(); // Trigger notification
+                onLogin();
                 navigate('/home');
             } else {
                 setErrorMessage('Login failed. Please check your credentials.');

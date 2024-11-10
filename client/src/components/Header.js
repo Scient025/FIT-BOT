@@ -1,11 +1,10 @@
-// src/components/Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ isAuthenticated, handleLogout }) => {
   const handleLinkClick = (path) => {
-    window.location.pathname = path; // Redirect to the selected page
+    window.location.pathname = path;
   };
 
   return (
@@ -24,7 +23,7 @@ const Header = ({ isAuthenticated, handleLogout }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto"> {/* Centering the nav items */}
+          <ul className="navbar-nav mx-auto">
             {isAuthenticated ? (
               <>
                 <li className="nav-item" onClick={() => handleLinkClick('/home')}>
@@ -39,6 +38,9 @@ const Header = ({ isAuthenticated, handleLogout }) => {
                 <li className="nav-item" onClick={() => handleLinkClick('/community')}>
                   <span className="nav-link">Community</span>
                 </li>
+                {/* <li className="nav-item" onClick={() => handleLinkClick('/recommender')}>
+                  <span className="nav-link">Recommender</span>
+                </li> */}
                 <li className="nav-item" onClick={() => handleLinkClick('/contact')}>
                   <span className="nav-link">Contact</span>
                 </li>

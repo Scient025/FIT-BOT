@@ -1,24 +1,24 @@
 .login-container {
     display: flex;
-    align-items: center; /* Center items vertically */
-    height: 100vh; /* Full viewport height */
-    position: relative; /* Position relative for absolute positioning of Spline */
+    align-items: center;
+    height: 100vh; 
+    position: relative;
 }
 
 .login-form {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 1.5rem;
-    border-radius: 0.25rem; /* rounded */
-    width: 25%; /* Set width for the form */
-    margin: 0 5% 0 20px; /* Add margin to the right and left */
-    z-index: 1; /* Ensure form is above the Spline */
+    border-radius: 0.25rem; 
+    width: 25%;
+    margin: 0 5% 0 20px; 
+    z-index: 1; 
 }
 
 .spline-background {
-    flex: 1; /* Allow Spline to take the remaining space */
-    height: 100%; /* Full height to match the container */
-    z-index: 0; /* Spline is the background */
-    position: absolute; /* Position absolute to fill the container */
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
+    flex: 1; 
+    height: 100%; 
+    z-index: 0; 
+    position: absolute; 
+    top: 0;
+    left: 0; 
 }

@@ -14,11 +14,8 @@ import chestWorkoutRoutes from './routes/chestWorkout.js';
 import tricepsWorkoutRoutes from './routes/tricepsWorkout.js';
 import shoulderWorkoutRoutes from './routes/shoulderWorkout.js';
 import forearmWorkoutRoutes from './routes/forearmWorkout.js';
-<<<<<<< Updated upstream
 import communityRoutes from './routes/CommunityRoute.js'
-=======
 import nutritionRoutes from './routes/nutritionRoutes.js';
->>>>>>> Stashed changes
 
 dotenv.config();
 
@@ -45,11 +42,8 @@ app.use('/api/fitness', chestWorkoutRoutes);
 app.use('/api/fitness', tricepsWorkoutRoutes);
 app.use('/api/fitness', shoulderWorkoutRoutes);
 app.use('/api/fitness', forearmWorkoutRoutes);
-<<<<<<< Updated upstream
 app.use('/api/community', communityRoutes)
-=======
 app.use('/api/nutrition', nutritionRoutes);
->>>>>>> Stashed changes
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 

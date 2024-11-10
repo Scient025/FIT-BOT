@@ -83,10 +83,10 @@ const Tracker = () => {
             <div className="workouts-container">
                 {workouts && workouts
                     .filter((item) => item.type.toLowerCase().includes(searchQuery.toLowerCase()))
-                    .map((item, index) => (
+                    .map((item) => (
                         <div
                             className="workout-card"
-                            key={index}
+                            key={item.type}
                             onClick={() => navigateToWorkout(item.type)}
                         >
                             <div

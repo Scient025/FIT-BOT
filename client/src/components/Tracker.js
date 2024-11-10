@@ -4,14 +4,13 @@ import './Tracker.css';
 
 const Tracker = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [foodData, setFoodData] = useState(null); // Store data for the first food item
+    const [foodData, setFoodData] = useState(null); 
     const [loggedFoods, setLoggedFoods] = useState([]);
     const [workouts, setWorkouts] = useState([]);
-    const [mealType, setMealType] = useState(''); // Meal type (breakfast, lunch, dinner)
+    const [mealType, setMealType] = useState('');
 
     const navigate = useNavigate();
 
-    // Fetch workouts data
     const getWorkouts = async () => {
         const data = [
             { type: 'Chest', imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80' },
@@ -27,13 +26,12 @@ const Tracker = () => {
     };
 
     useEffect(() => {
-        getWorkouts(); // Call the function to set workouts
+        getWorkouts();
     }, []);
 
-    // Fetch nutritional data from USDA API based on search query
     const searchFood = useCallback(async () => {
         if (searchQuery.length > 2) {
-            const apiKey = "aNmY3LuepB3gIsOUpfIc1zwKux3USHO0cI7DM3WU"; // Replace with your actual USDA API key
+            const apiKey = process.env.REACT_APP_USDA_API_KEY; 
             const response = await fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchQuery}&api_key=${apiKey}`);
             const data = await response.json();
             if (data.foods && data.foods.length > 0) {
@@ -45,7 +43,7 @@ const Tracker = () => {
                     fat: firstFood.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0,
                 });
             } else {
-                setFoodData(null); // Clear data if no foods found
+                setFoodData(null);
             }
         }
     }, [searchQuery]);
@@ -54,14 +52,13 @@ const Tracker = () => {
         if (searchQuery) searchFood();
     }, [searchQuery, searchFood]);
 
-    // Log the selected food item with meal type and date
     const logFood = () => {
         if (foodData && mealType) {
             const currentDate = new Date().toLocaleDateString();
             const foodWithDate = { ...foodData, loggedDate: currentDate, mealType };
             setLoggedFoods([...loggedFoods, foodWithDate]);
-            setFoodData(null); // Clear data after logging
-            setMealType(''); // Clear meal type selection
+            setFoodData(null);
+            setMealType(''); 
         }
     };
 
@@ -71,7 +68,6 @@ const Tracker = () => {
 
     return (
         <div className="tracker-page">
-            {/* Search Bar for Food Tracking */}
             <div className="search-bar">
                 <input
                     type="text"
@@ -82,7 +78,6 @@ const Tracker = () => {
                 />
             </div>
 
-            {/* Display Nutritional Information Form for the First Search Result */}
             {foodData && (
                 <div className="food-info">
                     <h2>{foodData.description}</h2>
@@ -113,7 +108,6 @@ const Tracker = () => {
                 </div>
             )}
 
-            {/* Logged Foods */}
             <h2>Logged Foods</h2>
             <ul>
                 {loggedFoods.map((food, index) => (
@@ -124,7 +118,6 @@ const Tracker = () => {
                 ))}
             </ul>
 
-            {/* Workout Cards */}
             <h1 className="main-heading">Workouts</h1>
             <div className="workouts-container">
                 {workouts.map((item, index) => (

@@ -4,7 +4,7 @@ import './Tracker.css';
 
 const Tracker = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [foodData, setFoodData] = useState(null); 
+    const [foodData, setFoodData] = useState(null);
     const [loggedFoods, setLoggedFoods] = useState([]);
     const [workouts, setWorkouts] = useState([]);
     const [mealType, setMealType] = useState('');
@@ -22,7 +22,7 @@ const Tracker = () => {
             { type: 'Legs', imageUrl: 'https://images.unsplash.com/photo-1434608519344-49d77a699e1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' },
             { type: 'Forearms', imageUrl: 'https://images.unsplash.com/photo-1591940742878-13aba4b7a34e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' }
         ];
-        setWorkouts(data);
+        setWorkouts(data); 
     };
 
     useEffect(() => {
@@ -52,15 +52,50 @@ const Tracker = () => {
         if (searchQuery) searchFood();
     }, [searchQuery, searchFood]);
 
-    const logFood = () => {
+    const logFood = async () => {
         if (foodData && mealType) {
             const currentDate = new Date().toLocaleDateString();
             const foodWithDate = { ...foodData, loggedDate: currentDate, mealType };
-            setLoggedFoods([...loggedFoods, foodWithDate]);
-            setFoodData(null);
-            setMealType(''); 
+
+            try {
+                const response = await fetch('http://localhost:5000/api/foodLog/loggedFoods', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(foodWithDate),
+                });
+
+                if (response.ok) {
+                    setLoggedFoods(prevFoods => [...prevFoods, foodWithDate]);
+                    setFoodData(null); 
+                    setMealType(''); 
+                } else {
+                    console.error('Failed to save food log');
+                }
+            } catch (error) {
+                console.error('Error logging food:', error);
+            }
         }
     };
+
+    useEffect(() => {
+        const fetchLoggedFoods = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/foodLog/loggedFoods');
+                if (response.ok) {
+                    const data = await response.json();
+                    setLoggedFoods(data);
+                } else {
+                    console.error('Failed to fetch logged foods');
+                }
+            } catch (error) {
+                console.error('Error fetching logged foods:', error);
+            }
+        };
+
+        fetchLoggedFoods();
+    }, []);
 
     const navigateToWorkout = (type) => {
         navigate(`/workout/${type.toLowerCase()}`);

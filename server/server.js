@@ -16,6 +16,8 @@ import shoulderWorkoutRoutes from './routes/shoulderWorkout.js';
 import forearmWorkoutRoutes from './routes/forearmWorkout.js';
 import communityRoutes from './routes/CommunityRoute.js'
 import nutritionRoutes from './routes/nutritionRoutes.js';
+import recommenderRoute from './routes/recommender.js';
+
 
 dotenv.config();
 
@@ -44,6 +46,7 @@ app.use('/api/fitness', shoulderWorkoutRoutes);
 app.use('/api/fitness', forearmWorkoutRoutes);
 app.use('/api/community', communityRoutes)
 app.use('/api/nutrition', nutritionRoutes);
+app.use('/api/recommender', recommenderRoute);
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 

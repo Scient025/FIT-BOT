@@ -23,6 +23,7 @@ import TricepsPage from './components/TricepsPage';
 import BicepsPage from './components/BicepsPage';
 import ForearmsPage from './components/ForearmsPage';
 import Notification from './components/Notification';
+import Recommender from './components/Recommender';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -84,6 +85,7 @@ const App = () => {
                 <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} onLogin={handleLogin} />} />
                 <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} onSignUp={handleSignup} />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/recommender" element={<Recommender />} />
 
                 {/* Redirect root to login/signup */}
                 <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />

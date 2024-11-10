@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './AccessDenied.css'; // Import the CSS file
+import './AccessDenied.css';
 
 const AccessDenied = () => (
     <div className="access-denied-container">

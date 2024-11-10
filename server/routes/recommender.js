@@ -3,7 +3,6 @@ import Workout from '../models/Workout.js';
 
 const router = express.Router();
 
-// GET /api/recommender - Fetch recommended workouts based on filters
 router.get('/', async (req, res) => {
     const { bodyPart, skillLevel, equipment, workoutType } = req.query;
 

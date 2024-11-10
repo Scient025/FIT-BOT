@@ -60,7 +60,7 @@
 
 button {
   display: block;
-  margin: 1.5rem auto 0; /* This centers the button horizontally */
+  margin: 1.5rem auto 0; 
   padding: 0.75rem 2rem;
   background-color: var(--orange);
   color: white;
@@ -69,7 +69,7 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  text-align: center; /* Ensures the text inside the button is centered */
+  text-align: center; 
 }
 
 button:hover {
@@ -148,9 +148,9 @@ button:hover {
 
 .main-heading {
   padding-top: 2rem;
-  text-align: center; /* Centers the text horizontally */
-  font-size: 2.5rem; /* Adjust the font size as needed */
+  text-align: center;
+  font-size: 2.5rem; 
   font-weight: bold;
   color: var(--orange);
-  margin: 0 auto 2rem; /* Ensures margin for spacing below */
+  margin: 0 auto 2rem; 
 }

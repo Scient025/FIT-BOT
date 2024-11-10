@@ -48,7 +48,6 @@ const Contact = () => {
                 </div>
                 <button type="submit" className="btn btn-dark">Submit</button>
             </form>
-            {/* Change autoClose from 3000 to 10000 (10 seconds) */}
             <ToastContainer position="top-right" autoClose={10000} hideProgressBar closeOnClick pauseOnHover draggable />
         </div>
     );

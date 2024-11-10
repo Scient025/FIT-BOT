@@ -81,16 +81,16 @@ const App = () => {
             )}
 
             <Routes>
-                {/* Public routes */}
+                {/*public routes*/}
                 <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} onLogin={handleLogin} />} />
                 <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} onSignUp={handleSignup} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/recommender" element={<Recommender />} />
 
-                {/* Redirect root to login/signup */}
+                {/*redirect root to login/signup*/}
                 <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
 
-                {/* Private routes (only accessible when logged in) */}
+                {/*private routes*/}
                 <Route path="/home" element={isAuthenticated ? (
                     <>
                         <Home />
@@ -104,7 +104,6 @@ const App = () => {
                 <Route path="/chatbot" element={isAuthenticated ? <Chatbot /> : <AccessDenied />} />
                 <Route path="/community" element={isAuthenticated ? <Community /> : <AccessDenied />} />
 
-                {/* Workout-specific routes */}
                 <Route path="/workout/back" element={<BackPage />} />
                 <Route path="/workout/legs" element={<LegsPage />} />
                 <Route path="/workout/chest" element={<ChestPage />} />

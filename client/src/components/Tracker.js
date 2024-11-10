@@ -103,7 +103,6 @@ const Tracker = () => {
     return (
         <div className="tracker">
             <div className="tracker-container">
-                {/* Search Bar for Food Tracking */}
                 <h2>Nutrition Tracker</h2>
                 <div className="search-bar">
                     <input
@@ -115,7 +114,6 @@ const Tracker = () => {
                     />
                 </div>
 
-                {/* Display Nutritional Information Form for the First Search Result */}
                 {foodData && (
                     <div className="food-info">
                         <h2>{foodData.description}</h2>
@@ -146,7 +144,6 @@ const Tracker = () => {
                     </div>
                 )}
 
-                {/* Logged Foods */}
                 <h2>Logged Foods</h2>
                 <div className="logged-foods-container">
                     <ul className="logged-foods-list">
@@ -160,7 +157,6 @@ const Tracker = () => {
                     </ul>
                 </div>
             </div>
-                {/* Workout Cards */}
                 <h1 className="main-heading">Workouts</h1>
                 <div className="workouts-container">
                     {workouts.map((item, index) => (

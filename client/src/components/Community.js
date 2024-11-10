@@ -93,7 +93,6 @@ const Community = () => {
                         <p>{post.content}</p>
                         <p><small>{new Date(post.createdAt).toLocaleString()}</small></p>
 
-                        {/* Comments Section */}
                         <div className="comments-section">
                             <h4>Comments</h4>
                             <ul>

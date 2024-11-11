@@ -190,7 +190,7 @@ const Tracker = () => {
                 ))}
             </div>
             <div className="workouts-summary">
-                <h2>Workout Summary</h2>
+                {/* <h2>Workout Summary</h2> */}
                 <div className="summary-cards">
                     {Object.keys(workoutsSummary).map((category, index) => (
                         <div key={index} className="workout-summary-card">

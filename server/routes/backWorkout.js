@@ -23,4 +23,14 @@ router.post('/back', async (req, res) => {
     }
 });
 
+router.get('/back', async (req, res) => {
+    try {
+        const workouts = await BackWorkout.find(); 
+        res.status(200).json(workouts);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ error: 'Failed to fetch back workouts' });
+    }
+});
+
 export default router;

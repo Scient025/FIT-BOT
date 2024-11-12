@@ -8,6 +8,7 @@ const Tracker = () => {
     const [loggedFoods, setLoggedFoods] = useState([]);
     const [workouts, setWorkouts] = useState([]);
     const [mealType, setMealType] = useState('');
+    const [workoutsSummary, setWorkoutsSummary] = useState({});
 
     const navigate = useNavigate();
 
@@ -21,16 +22,31 @@ const Tracker = () => {
             { type: 'Legs', imageUrl: 'https://images.unsplash.com/photo-1434608519344-49d77a699e1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' },
             { type: 'Forearms', imageUrl: 'https://images.unsplash.com/photo-1591940742878-13aba4b7a34e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' }
         ];
-        setWorkouts(data); 
+        setWorkouts(data);
+    };
+
+    const getWorkoutsSummary = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/workouts-summary');
+            if (response.ok) {
+                const data = await response.json();
+                setWorkoutsSummary(data);
+            } else {
+                console.error('Failed to fetch workouts summary');
+            }
+        } catch (error) {
+            console.error('Error fetching workouts summary:', error);
+        }
     };
 
     useEffect(() => {
         getWorkouts();
+        getWorkoutsSummary();
     }, []);
 
     const searchFood = useCallback(async () => {
         if (searchQuery.length > 2) {
-            const apiKey = process.env.REACT_APP_USDA_API_KEY; 
+            const apiKey = process.env.REACT_APP_USDA_API_KEY;
             const response = await fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchQuery}&api_key=${apiKey}`);
             const data = await response.json();
             if (data.foods && data.foods.length > 0) {
@@ -67,8 +83,8 @@ const Tracker = () => {
 
                 if (response.ok) {
                     setLoggedFoods(prevFoods => [...prevFoods, foodWithDate]);
-                    setFoodData(null); 
-                    setMealType(''); 
+                    setFoodData(null);
+                    setMealType('');
                 } else {
                     console.error('Failed to save food log');
                 }
@@ -146,35 +162,54 @@ const Tracker = () => {
 
                 <h2>Logged Foods</h2>
                 <div className="logged-foods-container">
-                    <ul className="logged-foods-list">
-                        {loggedFoods.map((food, index) => (
-                            <li key={index}>
-                                <span>{food.description}</span>: {food.calories} kcal, {food.protein}g protein, {food.fat}g fat 
-                                <div className="meal-type">({food.mealType})</div>
-                                <div className="logged-date">Logged on: {food.loggedDate}</div>
-                            </li>
-                        ))}
-                    </ul>
+                    {loggedFoods.length === 0 ? (
+                        <p>No logged food yet</p>
+                    ) : (
+                        <ul className="logged-foods-list">
+                            {loggedFoods.map((food, index) => (
+                                <li key={index}>
+                                    <span>{food.description}</span>: {food.calories} kcal, {food.protein}g protein, {food.fat}g fat
+                                    <div className="meal-type">({food.mealType})</div>
+                                    <div className="logged-date">Logged on: {food.loggedDate}</div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
-                <h1 className="main-heading">Workouts</h1>
-                <div className="workouts-container">
-                    {workouts.map((item, index) => (
+            <h1 className="main-heading">Workouts</h1>
+            <div className="workouts-container">
+                {workouts.map((item, index) => (
+                    <div
+                        className="workout-card"
+                        key={index}
+                        onClick={() => navigateToWorkout(item.type)}
+                    >
                         <div
-                            className="workout-card"
-                            key={index}
-                            onClick={() => navigateToWorkout(item.type)}
-                        >
-                            <div
-                                className="workout-card-image"
-                                style={{ backgroundImage: `url(${item.imageUrl})` }}
-                            ></div>
-                            <h2 className="workout-card-title">{item.type}</h2>
+                            className="workout-card-image"
+                            style={{ backgroundImage: `url(${item.imageUrl})` }}
+                        ></div>
+                        <h2 className="workout-card-title">{item.type}</h2>
+                    </div>
+                ))}
+            </div>
+            <div className="workouts-summary">
+                {/* <h2>Workout Summary</h2> */}
+                <div className="summary-cards">
+                    {Object.keys(workoutsSummary).map((category, index) => (
+                        <div key={index} className="workout-summary-card">
+                            <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                            <ul>
+                                {workoutsSummary[category].map((workout, i) => (
+                                    <li key={i}>{workout.exercise}: {workout.sets} sets of {workout.reps} reps</li>
+                                ))}
+                            </ul>
                         </div>
                     ))}
                 </div>
             </div>
-        
+        </div>
+
     );
 };
 

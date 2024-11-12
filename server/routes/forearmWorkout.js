@@ -24,4 +24,14 @@ router.post('/Forarms', async (req, res) => {
     }
 });
 
+router.get('/Forarms', async (req, res) => {
+    try {
+        const workouts = await ForearmsWorkout.find(); 
+        res.status(200).json(workouts);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ error: 'Failed to fetch Forearms workouts' });
+    }
+});
+
 export default router;

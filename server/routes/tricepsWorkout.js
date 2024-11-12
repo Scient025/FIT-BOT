@@ -24,4 +24,14 @@ router.post('/Triceps', async (req, res) => {
     }
 });
 
+router.get('/Triceps', async (req, res) => {
+    try {
+        const workouts = await TricepsWorkout.find(); 
+        res.status(200).json(workouts);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ error: 'Failed to fetch triceps workouts' });
+    }
+});
+
 export default router;

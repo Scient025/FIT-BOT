@@ -13,6 +13,9 @@ const BicepsPage = () => {
         caloriesBurned: ''
     });
 
+    const [savedWorkouts, setSavedWorkouts] = useState([]);
+
+    // Fetch workout data for Biceps exercises
     const getWorkout = async () => {
         let data = {
             type: 'Biceps',
@@ -49,8 +52,19 @@ const BicepsPage = () => {
         setWorkout(data);
     };
 
+    // Fetch saved workouts from the backend
+    const getSavedWorkouts = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/fitness/biceps');
+            setSavedWorkouts(response.data); // Update state with the fetched saved workouts
+        } catch (error) {
+            console.error('Error fetching saved workouts:', error);
+        }
+    };
+
     useEffect(() => {
-        getWorkout();
+        getWorkout(); // Fetch the workout exercises
+        getSavedWorkouts(); // Fetch saved workouts when the page loads
     }, []);
 
     const handleInputChange = (e) => {
@@ -72,6 +86,7 @@ const BicepsPage = () => {
             console.log('Server response:', response.data);
             alert('Biceps workout saved successfully!');
             setWorkoutInput({ exercise: '', weight: '', sets: '', reps: '', caloriesBurned: '' });
+            getSavedWorkouts(); // Refresh saved workouts list after saving
         } catch (error) {
             console.error('Error saving workout:', error);
             alert(`Failed to save workout: ${error.response?.data?.error || error.message}`);
@@ -95,61 +110,79 @@ const BicepsPage = () => {
                     </div>
                 ))}
             </div>
-            
+
             <div className="BicepsPage__form-container">
-            <h2>Add a Biceps Workout</h2>
-            <form onSubmit={submitWorkout} className='BicepsPage__form'>
-                <div className="form-group">
-                <input
-                type="text"
-                name="exercise"
-                placeholder="Exercise"
-                value={workoutInput.exercise}
-                onChange={handleInputChange}
-                />
+                <h2>Add a Biceps Workout</h2>
+                <form onSubmit={submitWorkout} className='BicepsPage__form'>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="exercise"
+                            placeholder="Exercise"
+                            value={workoutInput.exercise}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="number"
+                            name="weight"
+                            placeholder="Weight"
+                            value={workoutInput.weight}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="number"
+                            name="sets"
+                            placeholder="Sets"
+                            value={workoutInput.sets}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="number"
+                            name="reps"
+                            placeholder="Reps"
+                            value={workoutInput.reps}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="number"
+                            name="caloriesBurned"
+                            placeholder="Calories Burned"
+                            value={workoutInput.caloriesBurned}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <button type="submit">Submit Workout</button>
+                </form>
             </div>
-            <div className="form-group">
-                <input
-                type="number"
-                name="weight"
-                placeholder="Weight"
-                value={workoutInput.weight}
-                onChange={handleInputChange}
-                />
+
+            <div className="BicepsPage__saved-container">
+                <h2>Saved Workouts</h2>
+                <div className="BicepsPage__saved-workouts">
+                    {savedWorkouts.length === 0 ? (
+                        <p>No saved workouts yet.</p>
+                    ) : (
+                        savedWorkouts.map((workout, index) => (
+                            <div key={index} className="BicepsPage__saved-workout">
+                                <p><strong>Exercise:</strong> {workout.exercise}</p>
+                                <p><strong>Weight:</strong> {workout.weight} kg</p>
+                                <p><strong>Sets:</strong> {workout.sets}</p>
+                                <p><strong>Reps:</strong> {workout.reps}</p>
+                                <p><strong>Calories Burned:</strong> {workout.caloriesBurned}</p>
+                            </div>
+                        ))
+                    )}
+                </div>
             </div>
-            <div className="form-group">
-                <input
-                type="number"
-                name="sets"
-                placeholder="Sets"
-                value={workoutInput.sets}
-                onChange={handleInputChange}
-                />
-            </div>
-            <div className="form-group">
-                <input
-                type="number"
-                name="reps"
-                placeholder="Reps"
-                value={workoutInput.reps}
-                onChange={handleInputChange}
-                />
-            </div>
-            <div className="form-group">
-                <input
-                type="number"
-                name="caloriesBurned"
-                placeholder="Calories Burned"
-                value={workoutInput.caloriesBurned}
-                onChange={handleInputChange}
-                />
-            </div>
-            <button type="submit">Submit Workout</button>
-        </form>
         </div>
-    </div>
     );
 };
 
 export default BicepsPage;
-

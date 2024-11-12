@@ -18,6 +18,7 @@ import communityRoutes from './routes/CommunityRoute.js'
 import nutritionRoutes from './routes/nutritionRoutes.js';
 import recommenderRoute from './routes/recommender.js';
 import FoodLog from './routes/foodLog.js';
+import workoutsSummaryRoute from './routes/workoutsSummary.js';
 
 dotenv.config();
 
@@ -48,6 +49,7 @@ app.use('/api/community', communityRoutes)
 app.use('/api/nutrition', nutritionRoutes);
 app.use('/api/recommender', recommenderRoute);
 app.use('/api/foodLog', FoodLog);
+app.use('/api/workouts-summary', workoutsSummaryRoute);
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 

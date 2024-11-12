@@ -24,4 +24,14 @@ router.post('/Chests', async (req, res) => {
     }
 });
 
+router.get('/Chests', async (req, res) => {
+    try {
+        const workouts = await ChestsWorkout.find(); 
+        res.status(200).json(workouts);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ error: 'Failed to fetch chests workouts' });
+    }
+});
+
 export default router;

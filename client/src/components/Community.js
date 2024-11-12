@@ -7,7 +7,7 @@ import './Community.css';
 const Community = () => {
     const [posts, setPosts] = useState([]);
     const [formData, setFormData] = useState({ title: '', content: '', username: '' });
-    const [commentData, setCommentData] = useState({ username: '', comment: '' });
+    const [commentData, setCommentData] = useState({});
 
     const fetchPosts = async () => {
         try {
@@ -26,8 +26,8 @@ const Community = () => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
-    const handleCommentChange = (e) => {
-        setCommentData({ ...commentData, [e.target.id]: e.target.value });
+    const handleCommentChange = (e, postId) => {
+        setCommentData({ ...commentData, [postId]: { ...commentData[postId], [e.target.id]: e.target.value } });
     };
 
     const handleSubmit = async (e) => {
@@ -48,14 +48,14 @@ const Community = () => {
     };
 
     const handleCommentSubmit = async (postId) => {
-        if (!commentData.username || !commentData.comment) {
+        if (!commentData[postId]?.username || !commentData[postId]?.comment) {
             alert('Please fill out all fields.');
             return;
         }
         try {
-            await axios.post(`http://localhost:5000/api/community/${postId}/comment`, commentData);
+            await axios.post(`http://localhost:5000/api/community/${postId}/comment`, commentData[postId]);
             fetchPosts();
-            setCommentData({ username: '', comment: '' });
+            setCommentData({ ...commentData, [postId]: { username: '', comment: '' } });
             toast.success('Comment added successfully!');
         } catch (error) {
             console.error('Error adding comment', error);
@@ -105,14 +105,14 @@ const Community = () => {
                                     type="text"
                                     id="username"
                                     placeholder="Your username"
-                                    onChange={handleCommentChange}
-                                    value={commentData.username}
+                                    onChange={(e) => handleCommentChange(e, post._id)}
+                                    value={commentData[post._id]?.username || ''}
                                 />
                                 <textarea
                                     id="comment"
                                     placeholder="Add a comment..."
-                                    onChange={handleCommentChange}
-                                    value={commentData.comment}
+                                    onChange={(e) => handleCommentChange(e, post._id)}
+                                    value={commentData[post._id]?.comment || ''}
                                 ></textarea>
                                 <button onClick={() => handleCommentSubmit(post._id)} className="btn btn-secondary">Comment</button>
                             </div>

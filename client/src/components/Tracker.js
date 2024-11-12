@@ -162,15 +162,19 @@ const Tracker = () => {
 
                 <h2>Logged Foods</h2>
                 <div className="logged-foods-container">
-                    <ul className="logged-foods-list">
-                        {loggedFoods.map((food, index) => (
-                            <li key={index}>
-                                <span>{food.description}</span>: {food.calories} kcal, {food.protein}g protein, {food.fat}g fat
-                                <div className="meal-type">({food.mealType})</div>
-                                <div className="logged-date">Logged on: {food.loggedDate}</div>
-                            </li>
-                        ))}
-                    </ul>
+                    {loggedFoods.length === 0 ? (
+                        <p>No logged food yet</p>
+                    ) : (
+                        <ul className="logged-foods-list">
+                            {loggedFoods.map((food, index) => (
+                                <li key={index}>
+                                    <span>{food.description}</span>: {food.calories} kcal, {food.protein}g protein, {food.fat}g fat
+                                    <div className="meal-type">({food.mealType})</div>
+                                    <div className="logged-date">Logged on: {food.loggedDate}</div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
             <h1 className="main-heading">Workouts</h1>
